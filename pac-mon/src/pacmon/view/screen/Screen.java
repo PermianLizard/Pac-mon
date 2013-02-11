@@ -1,0 +1,107 @@
+package pacmon.view.screen;
+
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.util.ArrayList;
+import java.util.BitSet;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import pacmon.control.RootManager;
+import pacmon.control.action.Action;
+import pacmon.control.event.EventGenerator;
+import pacmon.control.event.EventListener;
+
+public class Screen  implements EventListener
+{
+	
+	public Screen(String name, RootManager rootManager)
+	{
+		this.name = name;
+		this.rootManager = rootManager;
+		
+		rootManager.setScreen(this);
+		image = new BufferedImage(rootManager.getWidth(), rootManager.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		
+		Graphics2D g = image.createGraphics();
+		g.setColor(Color.BLACK);
+		g.fillRect(0, 0, image.getWidth(), image.getHeight());
+		g.dispose();
+		
+		actionMap = new HashMap<String,List<Action>>();
+	}
+	
+	public String getName()
+	{
+		return name;
+	}
+	
+	public RootManager getRootManager()
+	{
+		return rootManager;
+	}	
+	
+	public void render(Graphics2D g)
+	{
+		g.drawImage(image, 0, 0, null);
+	}
+	
+	public void update(BitSet keyStateBitSet)
+	{
+	}	
+	
+	public void onShow()
+	{
+
+	}
+	
+	public void onHide()
+	{
+		
+	}
+	
+	@Override
+	public void onEventTriggered(String eventName, EventGenerator source) 
+	{
+		executeActions(eventName);
+	}
+	
+	public void addAction(String actionGroup, Action action)
+	{
+		List<Action> actionList = actionMap.get(actionGroup);		
+		if (actionList == null)
+		{
+			actionList = new ArrayList<Action>();
+			actionMap.put(actionGroup, actionList);
+		}
+		if (!actionList.contains(action))
+		{
+			actionList.add(action);
+		}
+	}
+	
+	public BufferedImage getImage() 
+	{
+		return this.image;
+	}
+	
+	protected void executeActions(String actionGroup)
+	{
+		List<Action> actionList = actionMap.get(actionGroup);
+		if (actionList != null)
+		{
+			for (Action a : actionList)
+			{
+				a.execute(this);
+			}
+		}
+	}
+	
+	private String name;	
+	private RootManager rootManager;	
+	private BufferedImage image;
+	
+	private Map<String,List<Action>> actionMap;
+}
