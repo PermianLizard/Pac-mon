@@ -18,7 +18,7 @@ public class GameScreen extends Screen
 		pausedKeyDownCache = false;
 		
 		this.optionsScreenName = optionsScreenName;
-		this.gameOverScreenName = gameOverScreenName;		
+		this.gameOverScreenName = gameOverScreenName;
 	}
 	
 	public void render(Graphics2D g)
@@ -86,4 +86,5 @@ public class GameScreen extends Screen
 	private boolean pausedKeyDownCache;
 	private String gameOverScreenName;
 	private String optionsScreenName;
+
 }

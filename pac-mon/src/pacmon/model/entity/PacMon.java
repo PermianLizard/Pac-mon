@@ -3,6 +3,7 @@ package pacmon.model.entity;
 import pacmon.model.level.Level;
 import pacmon.model.level.LevelMode;
 import pacmon.model.maze.Maze;
+import pacmon.model.maze.MazeItem;
 import pacmon.model.maze.Position;
 
 public class PacMon extends Entity 
@@ -80,16 +81,23 @@ public class PacMon extends Entity
 		}
 		
 		//Position position = getPosition();
-		return true;//;level.consumeMazeItem(position.x, position.y) == null;	
+		return true;//;level.fMazeItem(position.x, position.y) == null;	
 	}	
+	
+	public void move(Maze maze) 
+	{
+		super.move(maze);
+		Position position = getPosition();
+		MazeItem item = level.consumeMazeItem(position.x, position.y);
+		
+		// TODO: sound
+	}
 	
 	protected float getSpeed()
 	{
 		float speed = 1.0f;
 		LevelMode mode = level.getState().getMode();
-		Position position = getPosition();
 		
-		level.consumeMazeItem(position.x, position.y);
 		
 		//MazeItem item = level.getState().getMaze().getMazeItem(position.x, position.y);
 		

@@ -5,6 +5,7 @@ import pacmon.model.level.LevelMode;
 import pacmon.model.level.LevelState;
 import pacmon.model.maze.MazeItem;
 import pacmon.model.maze.MazeManager;
+import pacmon.sound.SoundManager;
 
 public class Game 
 {
@@ -189,6 +190,8 @@ public class Game
 				if (level.isPacMonDead())
 				{
 					pacMonDeathCountdown = PAC_MAN_DEATH_DELEY;
+
+					SoundManager.getInstance().play(SoundManager.DEATH, false);
 				}
 			}
 		}

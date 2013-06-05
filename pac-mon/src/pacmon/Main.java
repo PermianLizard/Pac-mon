@@ -10,6 +10,7 @@ import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -18,6 +19,7 @@ import pacmon.control.action.ExitAction;
 import pacmon.control.action.ResetGameAction;
 import pacmon.control.action.ShowGameScreenAction;
 import pacmon.model.maze.Maze;
+import pacmon.sound.SoundManager;
 import pacmon.view.component.Component;
 import pacmon.view.screen.GameOverScreen;
 import pacmon.view.screen.GameScreen;
@@ -72,6 +74,23 @@ public class Main implements Runnable
 		catch (IOException e) 
 		{			
 			System.out.println("Unable to load sprites");
+			e.printStackTrace();
+			System.exit(-1);
+		}
+		
+		try 
+		{
+			SoundManager.getInstance().loadAll();
+		} 
+		catch (IOException e) 
+		{
+			System.out.println("Unable to load sounds");
+			e.printStackTrace();
+			System.exit(-1);
+		} 
+		catch (UnsupportedAudioFileException e) 
+		{
+			System.out.println("Unable to load sounds");
 			e.printStackTrace();
 			System.exit(-1);
 		}
