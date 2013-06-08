@@ -6,6 +6,7 @@ import java.util.BitSet;
 
 import pacmon.control.RootManager;
 import pacmon.model.Game;
+import pacmon.sound.SoundManager;
 import pacmon.view.screen.game.GameRenderer;
 
 public class GameScreen extends Screen 
@@ -25,6 +26,11 @@ public class GameScreen extends Screen
 	{
 		super.render(g);		
 		GameRenderer.renderGame(g, Game.getInstance());
+	}
+	
+	public void onShow()
+	{
+		
 	}
 	
 	public void update(BitSet keyStateBitSet)

@@ -5,6 +5,7 @@ import pacmon.model.level.LevelMode;
 import pacmon.model.maze.Maze;
 import pacmon.model.maze.MazeItem;
 import pacmon.model.maze.Position;
+import pacmon.sound.SoundManager;
 
 public class PacMon extends Entity 
 {
@@ -87,10 +88,6 @@ public class PacMon extends Entity
 	public void move(Maze maze) 
 	{
 		super.move(maze);
-		Position position = getPosition();
-		MazeItem item = level.consumeMazeItem(position.x, position.y);
-		
-		// TODO: sound
 	}
 	
 	protected float getSpeed()
@@ -111,6 +108,42 @@ public class PacMon extends Entity
 		}
 		
 		return speed;
-	}	
+	}
+	
+	protected void onEnterTile() 
+	{
+		//System.out.println("entered a new tile");
+		
+		Position position = getPosition();
+		//MazeItem item = level.getState().getMaze().getMazeItem(position.x, position.y);
+		MazeItem item = level.consumeMazeItem(position.x, position.y);
+		
+		if (item != null)
+		{
+			if (item.equals(MazeItem.Dot))
+			{
+				//if (!SoundManager.getInstance().isPlaying(SoundManager.CHOMP))
+				SoundManager.getInstance().play(SoundManager.CHOMP, false);
+			}
+			else if (item.equals(MazeItem.Energizer))
+			{
+				
+			}
+			else if (item.isBonus())
+			{
+				SoundManager.getInstance().play(SoundManager.EAT_FRUIT, false);
+			}
+		}
+		else 
+		{
+			SoundManager.getInstance().stop(SoundManager.CHOMP);
+		}
+	}
+	
+	protected void onMovementBlocked(int currentTileX, int currentTileY)
+	{
+		//if (SoundManager.getInstance().isPlaying(SoundManager.CHOMP))
+			//SoundManager.getInstance().stop(SoundManager.CHOMP);
+	}
 	
 }

@@ -13,6 +13,8 @@ import pacmon.model.entity.Monster;
 import pacmon.model.entity.MonsterMode;
 import pacmon.model.entity.PacMon;
 import pacmon.model.entity.Pinky;
+import pacmon.model.level.LevelMode;
+import pacmon.model.level.LevelState;
 
 public class EntityRenderer 
 {
@@ -66,7 +68,21 @@ public class EntityRenderer
 		}
 		else if (pacMonState.equals(EntityState.MOVING))
 		{
-			int stateFrame = (int)(pacMon.timeInState % 21);
+			LevelState levelState = pacMon.getLevel().getState();
+			
+			float pns = levelState.getPacManNormalSpeed();
+			
+			int frameTime = 0;
+			if (!levelState.getMode().equals(LevelMode.FRIGHTENED))
+			{
+				frameTime = 2 + ((int)(10 * levelState.getPacManNormalSpeed()));
+			}
+			else
+			{
+				frameTime = 2 + ((int)(10 * levelState.getPacManFrightSpeed()));
+			}
+			
+			int stateFrame = (int)(pacMon.timeInState % frameTime);
 			if (stateFrame >= 0 && stateFrame < 4)
 				stateFrame = 1;
 			else if (stateFrame >= 4 && stateFrame < 8)

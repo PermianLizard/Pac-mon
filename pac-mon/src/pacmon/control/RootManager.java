@@ -7,6 +7,7 @@ import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import pacmon.sound.SoundManager;
 import pacmon.view.screen.Screen;
 
 public class RootManager implements KeyListener
@@ -70,6 +71,7 @@ public class RootManager implements KeyListener
 		{
 			if (currentScreen != null)
 			{
+				SoundManager.getInstance().stopAll();
 				currentScreen.onHide();
 			}			
 			currentScreen = screen;

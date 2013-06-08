@@ -10,7 +10,7 @@ import pacmon.sound.SoundManager;
 public class Game 
 {
 
-	private static final int LEVEL_START_DELEY = 100;
+	private static final int LEVEL_START_DELEY = 300;
 	private static final int LEVEL_COMPLETE_DELEY = 100;
 	private static final int PAC_MAN_DEATH_DELEY = 150;
 	
@@ -59,6 +59,8 @@ public class Game
 		
 		levelCompleteCountdown = 0;
 		pacMonDeathCountdown = 0;
+		
+		started = false;
 	}
 	
 	// Game control
@@ -85,6 +87,11 @@ public class Game
 	public void controlPause()
 	{
 		paused = !paused;
+		
+		if (paused)
+			SoundManager.getInstance().setPaused(true);
+		else
+			SoundManager.getInstance().setPaused(false);
 	}
 	
 	public boolean isPaused()
@@ -108,7 +115,14 @@ public class Game
 	}
 	
 	public void update()
-	{
+	{		
+		if (!started)
+		{
+			SoundManager.getInstance().stopAll();
+			SoundManager.getInstance().play(SoundManager.BEGINNING, false);
+			started = true;
+		}
+		
 		if (!paused && !gameOver)
 		{
 			if (levelStartCountdown > 0)
@@ -152,6 +166,8 @@ public class Game
 					state.setLivesLeft(3);				
 					
 					levelStartCountdown = LEVEL_START_DELEY;
+					SoundManager.getInstance().stopAll();
+					SoundManager.getInstance().play(SoundManager.BEGINNING, false);
 					
 					System.out.println("Level "+state.getLevelNum());
 				}
@@ -165,14 +181,19 @@ public class Game
 					LevelState currentState = level.getState();
 					currentState.setMode(LevelMode.SCATTER);
 					
-					//level = new Level(this);
-					levelStartCountdown = LEVEL_START_DELEY;
-					state.setLivesLeft(state.getLivesLeft() - 1);
-					level.setState(currentState);
-					
 					if (state.getLivesLeft() == 0)
 					{
 						gameOver = true;
+					}
+					else
+					{
+						//level = new Level(this);
+						levelStartCountdown = LEVEL_START_DELEY;
+						SoundManager.getInstance().stopAll();
+						SoundManager.getInstance().play(SoundManager.BEGINNING, false);
+						
+						state.setLivesLeft(state.getLivesLeft() - 1);
+						level.setState(currentState);
 					}
 				}
 			}
@@ -191,6 +212,7 @@ public class Game
 				{
 					pacMonDeathCountdown = PAC_MAN_DEATH_DELEY;
 
+					SoundManager.getInstance().stopAll();
 					SoundManager.getInstance().play(SoundManager.DEATH, false);
 				}
 			}
@@ -204,6 +226,8 @@ public class Game
 	public boolean paused;
 	
 	private boolean gameOver;
+	
+	private boolean started;
 	
 	private int levelStartCountdown;
 	private int levelCompleteCountdown;

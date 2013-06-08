@@ -5,7 +5,10 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.sound.sampled.AudioFormat;
@@ -26,10 +29,17 @@ public class SoundManager extends ThreadPool
 
 	public static final String DEATH = "death.wav";
 	public static final String CHOMP = "chomp.wav";
+	public static final String BEGINNING = "beginning.wav";
+	public static final String EAT_FRUIT = "eatfruit.wav";
+	public static final String EAT_GHOST = "eatghost.wav";
+	public static final String INTERMISSION = "intermission.wav";
 	
-	public static final String[] SOUNDS = {DEATH, CHOMP};
+	public static final String[] SOUNDS = {DEATH, CHOMP, BEGINNING, EAT_FRUIT, EAT_GHOST, INTERMISSION};
 	
-	private boolean stopAll;
+	private Object pausedLock;
+    private boolean paused;
+    
+    private List<SoundPlayer> activeSoundList;
 	
 	public static SoundManager getInstance() 
 	{
@@ -40,11 +50,19 @@ public class SoundManager extends ThreadPool
 	
 	private SoundManager() 
 	{
-		super(10);
+		super(20);
 		
 		soundMap = new HashMap<String, Sound>();
 		
-		stopAll = false;
+		pausedLock = new Object();
+		
+		activeSoundList = Collections.synchronizedList(new ArrayList<SoundPlayer>());
+		
+		// notify threads in pool it's ok to start
+		synchronized (this) 
+		{
+            notifyAll();
+        }
 	}
 	
 	public void loadAll() throws IOException, UnsupportedAudioFileException
@@ -55,21 +73,83 @@ public class SoundManager extends ThreadPool
 		}
 	}
 	
+	public void setPaused(boolean paused) 
+	{
+        if (this.paused != paused) 
+        {
+            synchronized (pausedLock) 
+            {
+                this.paused = paused;
+                if (!paused) 
+                {
+                    // restart sounds
+                    pausedLock.notifyAll();
+                }
+            }
+        }
+    }
+	
+	public boolean isPaused() 
+	{
+        return paused;
+    }
+	
 	public void play(String name, boolean loop)
 	{
+		if (isPlaying(name))
+			this.stop(name);
+		
 		Sound sound = soundMap.get(name);
 		if (sound == null)
 		{
 			// TODO
 		}
 	
-		runTask(new SoundPlayer(name, sound, loop));
-		stopAll = false;
+		SoundPlayer player = new SoundPlayer(this, name, sound, loop);
+		runTask(player);
 	}
 	
 	public void stopAll()
 	{
-		stopAll = true;
+		for (SoundPlayer player : this.activeSoundList)
+		{
+			player.stop();
+		}
+	}
+	
+	public void stop(String name)
+	{
+		for (SoundPlayer player : this.activeSoundList)
+		{
+			if (player.getName().equals(name))
+				player.stop();
+		}
+	}
+	
+	public boolean isPlaying(String name)
+	{
+		for (SoundPlayer player : this.activeSoundList)
+		{
+			if (player.getName().equals(name))
+				return true;
+		}
+		return false;
+	}
+	
+	protected void threadStarted() 
+	{
+        synchronized (this) 
+        {
+            try 
+            {
+                wait();
+            }
+            catch (InterruptedException ex) { }
+        }
+    }
+	
+	protected void threadStopped() 
+	{
 	}
 	
 	private void loadSound(String name) throws IOException, UnsupportedAudioFileException
@@ -90,42 +170,61 @@ public class SoundManager extends ThreadPool
         soundMap.put(name, sound);
 	}
 	
-	protected void threadStarted() 
+	private void soundStarted(SoundPlayer player)
 	{
-        synchronized (this) 
-        {
-            try 
-            {
-                wait();
-            }
-            catch (InterruptedException ex) { }
-        }
-        
-        System.out.println("thread started");
-    }
+		System.out.println(String.format("sound '%s' started", player.getName()));
+		activeSoundList.add(player);
+	}
 	
-	protected void threadStopped() 
+	private void soundEnded(SoundPlayer player)
 	{
-		System.out.println("thread stopped");
+		System.out.println(String.format("sound '%s' ended", player.getName()));
+		activeSoundList.remove(player);
 	}
 	
 	protected class SoundPlayer implements Runnable 
 	{
-		//private String name;
-		private Sound sound;
+		
+		private final SoundManager manager;
+		
+		private final String name;
+		private final Sound sound;
 		private boolean loop;
+		private boolean forceStop;
 
-        public SoundPlayer(String name, Sound sound, boolean loop) 
+        public SoundPlayer(SoundManager manager, String name, Sound sound, boolean loop) 
         {
-        	//this.name = name;
+        	this.manager = manager;
+        	this.name = name;
             this.sound = sound;
             this.loop = loop;
+            
+            this.forceStop = false;
         }
         
-        public void run() 
+        public String getName() 
         {
-        	System.out.println("sound player running");
-        	
+			return name;
+		}
+
+		public boolean isLoop() 
+		{
+			return loop;
+		}
+
+		/*public void endLoop()
+		{
+			if (loop)
+				this.loop = false;
+		}*/
+		
+		public void stop()
+		{
+			this.forceStop = true;
+		}
+		
+		public void run() 
+        {
         	InputStream is;
         	
         	if (loop)
@@ -162,30 +261,48 @@ public class SoundManager extends ThreadPool
                 // the line is unavailable
                 return;
             }
+
+            this.manager.soundStarted(this);
             
             try 
             {
                 int numBytesRead = 0;
                 while (numBytesRead != -1) 
                 {
-                	 if (stopAll)
-                	 {
-                		 System.out.println("dad's telling me to stop");
-                		 break;
-                	 }
+                	synchronized (pausedLock) 
+                	{
+                		if (paused) 
+                		{
+                            try 
+                            {
+                                pausedLock.wait();
+                            }
+                            catch (InterruptedException ex) 
+                            {
+                                return;
+                            }
+                        }
+                	}
                 	
-                    // copy data
-                    numBytesRead = is.read(buffer, 0, buffer.length);
-                    if (numBytesRead != -1) 
-                    {
-                        line.write(buffer, 0, numBytesRead);
-                    }
+                	if (forceStop)
+                	{
+                		break;
+                	}
+                	
+                	// copy data
+                	numBytesRead = is.read(buffer, 0, buffer.length);
+                	if (numBytesRead != -1) 
+                	{
+                		line.write(buffer, 0, numBytesRead);
+                	}
                 }
             }
             catch (IOException ex) 
             {
                 ex.printStackTrace();
             }
+
+            this.manager.soundEnded(this);
             
             line.drain();
             line.close();

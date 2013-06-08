@@ -104,8 +104,8 @@ public class ThreadPool extends ThreadGroup
 		{
             threadStarted();
 
-            //while (!isInterrupted()) 
-            //{
+            while (!isInterrupted()) 
+            {
                 Runnable task = null;
                 try 
                 {
@@ -126,8 +126,8 @@ public class ThreadPool extends ThreadGroup
                 {
                     uncaughtException(this, t);
                 }
-            //}
-
+            }
+                
             threadStopped();
         }
 	}

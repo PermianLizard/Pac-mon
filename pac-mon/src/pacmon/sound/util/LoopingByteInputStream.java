@@ -59,7 +59,6 @@ public class LoopingByteInputStream extends ByteArrayInputStream
         return totalBytesRead;
     }
 
-
     /**
         Closes the stream. Future calls to the read() methods
         will return 1.

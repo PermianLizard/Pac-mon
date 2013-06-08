@@ -15,6 +15,7 @@ import pacmon.model.entity.PacMon;
 import pacmon.model.entity.Pinky;
 import pacmon.model.maze.Maze;
 import pacmon.model.maze.MazeItem;
+import pacmon.sound.SoundManager;
 
 public class Level 
 {
@@ -235,6 +236,8 @@ public class Level
 			frightenedCooldown = -1;
 			frightenedMonstersEaten = 0;
 			
+			SoundManager.getInstance().stop(SoundManager.INTERMISSION);
+			
 			resumeLevelMode();			
 		}
 		else if (frightenedCooldown > 0)
@@ -359,6 +362,8 @@ public class Level
 			
 			frightenedCooldown = state.getFrightenedDuration();	
 			frightenedMonstersEaten = 0;
+			
+			SoundManager.getInstance().play(SoundManager.INTERMISSION, true);
 		}
 	}
 	

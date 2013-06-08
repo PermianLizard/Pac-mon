@@ -24,6 +24,9 @@ public abstract class Entity
 		this.timeInState = 0;		
 		this.halfTilePassed = false;
 		this.snapToTile = true;
+		
+		lastTileX = -1;
+		lastTileY = -1;
 	}
 	
 	/*
@@ -58,6 +61,11 @@ public abstract class Entity
 		return this.state;
 	}
 	
+	public Level getLevel() 
+	{
+		return level;
+	}
+
 	public void setState(EntityState state)
 	{
 		this.state = state;
@@ -283,6 +291,12 @@ public abstract class Entity
 			int tileX = posX / Maze.TILE_SIZE;
 			int tileY = posY / Maze.TILE_SIZE;
 			
+			if (tileX != lastTileX || tileY != lastTileY)
+				this.onEnterTile();
+			
+			lastTileX = tileX;
+			lastTileY = tileY;
+			
 			int nextTileX = tileX;
 			int nextTileY = tileY;
 			
@@ -479,7 +493,9 @@ public abstract class Entity
 					halfTilePassed = localHalfTilePassed;
 				}
 			}
+			
 		}
+		
 		/*else
 		{
 			if (!state.equals(EntityState.STILL))
@@ -498,6 +514,11 @@ public abstract class Entity
 		}
 	}
 	
+	protected void onEnterTile() 
+	{
+		
+	}
+	
 	public long timeInState;
 	
 	protected Level level;	
@@ -505,6 +526,9 @@ public abstract class Entity
 	protected int posY;
 	protected byte direction;	
 	protected boolean snapToTile;
+	
+	protected int lastTileX;
+	protected int lastTileY;
 
 	private EntityState state;
 	private float slownessAccum;

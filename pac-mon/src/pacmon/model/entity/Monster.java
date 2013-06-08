@@ -9,6 +9,7 @@ import pacmon.model.level.LevelMode;
 import pacmon.model.maze.Maze;
 import pacmon.model.maze.MazeTile;
 import pacmon.model.maze.Position;
+import pacmon.sound.SoundManager;
 
 public abstract class Monster extends Entity 
 {
@@ -72,6 +73,8 @@ public abstract class Monster extends Entity
 	public void startDeadMode()
 	{
 		setMode(MonsterMode.DEAD);
+		
+		SoundManager.getInstance().play(SoundManager.EAT_GHOST, false);
 	}
 	
 	protected void decideDirection(int currentTileX, int currentTileY, Maze maze)
