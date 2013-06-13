@@ -111,6 +111,7 @@ public class SoundManager extends ThreadPool
 	
 	public void stopAll()
 	{
+		System.out.println("stopping all sounds");
 		for (SoundPlayer player : this.activeSoundList)
 		{
 			player.stop();
@@ -172,13 +173,11 @@ public class SoundManager extends ThreadPool
 	
 	private void soundStarted(SoundPlayer player)
 	{
-		System.out.println(String.format("sound '%s' started", player.getName()));
 		activeSoundList.add(player);
 	}
 	
 	private void soundEnded(SoundPlayer player)
 	{
-		System.out.println(String.format("sound '%s' ended", player.getName()));
 		activeSoundList.remove(player);
 	}
 	

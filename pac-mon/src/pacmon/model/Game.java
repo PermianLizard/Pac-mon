@@ -204,6 +204,7 @@ public class Game
 				if (level.isComplete())
 				{
 					levelCompleteCountdown = LEVEL_COMPLETE_DELEY;
+					SoundManager.getInstance().stopAll();
 					
 					System.out.println("Level "+state.getLevelNum() + " complete");
 				}
