@@ -92,8 +92,6 @@ public class GameScreen extends Screen
 		{
 			GameSoundEvent event = theGame.pollSoundEvent();
 			
-			System.out.println(String.format("GAME SOUND EVENT: %s", event.getName()));
-			
 			if (event.getType() == GameSoundEvent.TYPE_PLAY) 
 			{
 				getSoundManager().play(event.getName(), event.isLoop());
