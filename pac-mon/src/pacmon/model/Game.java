@@ -303,7 +303,7 @@ public class Game
 					, 300
 					, 1200
 					, 2
-					, MazeItem.BonusCherries
+					, MazeItem.BonusWeed  // cherries
 					, 2)
 			,
 			// 2
@@ -326,7 +326,7 @@ public class Game
 					, 300
 					, 61980
 					, 2
-					, MazeItem.BonusStrawberry
+					, MazeItem.BonusEcstacy
 					, 2)
 			,
 			// 3
@@ -349,7 +349,7 @@ public class Game
 					, 300
 					, 61980
 					, 2
-					, MazeItem.BonusPeach
+					, MazeItem.BonusShroom
 					, 2)
 			,
 			// 4
@@ -372,7 +372,7 @@ public class Game
 					, 300
 					, 61980
 					, 2
-					, MazeItem.BonusPeach
+					, MazeItem.BonusShroom
 					, 2)
 			,
 			// 5
@@ -395,7 +395,7 @@ public class Game
 					, 300
 					, 62220
 					, 2
-					, MazeItem.BonusApple
+					, MazeItem.BonusLSD
 					, 2)
 			,
 			// 6
@@ -418,7 +418,7 @@ public class Game
 					, 300
 					, 62220
 					, 2
-					, MazeItem.BonusApple
+					, MazeItem.BonusLSD
 					, 2)
 			,
 			// 7
@@ -441,7 +441,7 @@ public class Game
 					, 300
 					, 62220
 					, 2
-					, MazeItem.BonusMelon
+					, MazeItem.BonusCoke
 					, 2)
 			,
 			// 8
@@ -464,7 +464,7 @@ public class Game
 					, 300
 					, 62220
 					, 2
-					, MazeItem.BonusMelon
+					, MazeItem.BonusCoke
 					, 2)
 			,
 			// 9
@@ -487,7 +487,7 @@ public class Game
 					, 300
 					, 62220
 					, 2
-					, MazeItem.BonusGalaxian
+					, MazeItem.BonusSteroids
 					, 2)
 			,
 			// 10
@@ -510,7 +510,7 @@ public class Game
 					, 300
 					, 62220
 					, 2
-					, MazeItem.BonusGalaxian
+					, MazeItem.BonusSteroids
 					, 2)
 			,
 			// 11
@@ -533,7 +533,7 @@ public class Game
 					, 300
 					, 62220
 					, 2
-					, MazeItem.BonusBell
+					, MazeItem.BonusHeroin
 					, 2)
 			,
 			// 12
@@ -556,7 +556,7 @@ public class Game
 					, 300
 					, 62220
 					, 2
-					, MazeItem.BonusBell
+					, MazeItem.BonusHeroin
 					, 2)
 			,
 			// 13
@@ -579,7 +579,7 @@ public class Game
 					, 300
 					, 62220
 					, 2
-					, MazeItem.BonusKey
+					, MazeItem.BonusMeth
 					, 2)
 			,
 			// 14
@@ -602,7 +602,7 @@ public class Game
 					, 300
 					, 62220
 					, 2
-					, MazeItem.BonusKey
+					, MazeItem.BonusMeth
 					, 2)
 			,
 			// 15
@@ -625,7 +625,7 @@ public class Game
 					, 300
 					, 62220
 					, 2
-					, MazeItem.BonusKey
+					, MazeItem.BonusMeth
 					, 2)
 			,
 			// 16
@@ -648,7 +648,7 @@ public class Game
 					, 300
 					, 62220
 					, 2
-					, MazeItem.BonusKey
+					, MazeItem.BonusMeth
 					, 2)
 			,
 			// 17
@@ -671,7 +671,7 @@ public class Game
 					, 300
 					, 62220
 					, 2
-					, MazeItem.BonusKey
+					, MazeItem.BonusMeth
 					, 2)
 			,
 			// 18
@@ -694,7 +694,7 @@ public class Game
 					, 300
 					, 62220
 					, 2
-					, MazeItem.BonusKey
+					, MazeItem.BonusMeth
 					, 2)
 			,
 			// 19
@@ -717,7 +717,7 @@ public class Game
 					, 300
 					, 62220
 					, 2
-					, MazeItem.BonusKey
+					, MazeItem.BonusMeth
 					, 2)
 			,
 			// 20
@@ -740,7 +740,7 @@ public class Game
 					, 300
 					, 62220
 					, 2
-					, MazeItem.BonusKey
+					, MazeItem.BonusMeth
 					, 2)
 			,
 			// 21+
@@ -763,7 +763,7 @@ public class Game
 					, 300
 					, 62220
 					, 2
-					, MazeItem.BonusKey
+					, MazeItem.BonusMeth
 					, 2)
 			
 			

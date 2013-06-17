@@ -239,14 +239,14 @@ public class MazeRenderer
 				
 				switch(item)
 				{
-				case BonusCherries : frame = 0; break;
-				case BonusStrawberry : frame = 1; break;
-				case BonusPeach : frame = 2; break;
-				case BonusApple : frame = 3; break;
-				case BonusMelon : frame = 4; break;
-				case BonusGalaxian : frame = 5; break;
-				case BonusBell : frame = 6; break;
-				case BonusKey : frame = 7; break;
+				case BonusWeed : frame = 0; break;
+				case BonusEcstacy : frame = 1; break;
+				case BonusShroom : frame = 2; break;
+				case BonusLSD : frame = 3; break;
+				case BonusCoke : frame = 4; break;
+				case BonusSteroids : frame = 5; break;
+				case BonusHeroin : frame = 6; break;
+				case BonusMeth : frame = 7; break;
 				default:
 					break;
 				}

@@ -5,14 +5,14 @@ public enum MazeItem
 	
 	  Dot(10, false)
 	, Energizer(50, false)
-	, BonusCherries(100, true)
-	, BonusStrawberry(300, true)
-	, BonusPeach(500, true)
-	, BonusApple(700, true)
-	, BonusMelon(1000, true)
-	, BonusGalaxian(2000, true)
-	, BonusBell(3000, true)
-	, BonusKey(5000, true)
+	, BonusWeed(100, true)
+	, BonusEcstacy(300, true)
+	, BonusShroom(500, true)
+	, BonusLSD(700, true)
+	, BonusCoke(1000, true)
+	, BonusSteroids(2000, true)
+	, BonusHeroin(3000, true)
+	, BonusMeth(5000, true)
 	;
 	
 	public int getPointWorth()
