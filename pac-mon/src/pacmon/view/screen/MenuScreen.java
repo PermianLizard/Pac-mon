@@ -123,6 +123,11 @@ public class MenuScreen extends Screen
 		}
 	}
 	
+	public void onShow()
+	{
+		this.focusNextComponent();
+	}
+	
 	public void onHide()
 	{
 		this.focusedComponent = null;
@@ -141,7 +146,7 @@ public class MenuScreen extends Screen
 				int idx = components.indexOf(focusedComponent);				
 				if (idx == components.size() - 1)
 				{
-					focusedComponent = null;
+					focusedComponent = components.get(0);
 				}
 				else
 				{
