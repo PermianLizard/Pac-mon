@@ -6,7 +6,7 @@ import java.util.BitSet;
 
 import pacmon.control.RootManager;
 import pacmon.model.Game;
-import pacmon.sound.SoundManager;
+import pacmon.model.GameSoundEvent;
 import pacmon.view.screen.game.GameRenderer;
 
 public class GameScreen extends Screen 
@@ -14,7 +14,7 @@ public class GameScreen extends Screen
 
 	public GameScreen(String name, RootManager rootManager, String optionsScreenName, String gameOverScreenName)
 	{
-		super(name, rootManager);
+		super(name, rootManager, 10);
 		
 		pausedKeyDownCache = false;
 		
@@ -86,6 +86,36 @@ public class GameScreen extends Screen
 		if (theGame.isGameOver())
 		{
 			getRootManager().showScreen(gameOverScreenName);
+		}
+		
+		while (theGame.hasSoundEvent())
+		{
+			GameSoundEvent event = theGame.pollSoundEvent();
+			
+			System.out.println(String.format("GAME SOUND EVENT: %s", event.getName()));
+			
+			if (event.getType() == GameSoundEvent.TYPE_PLAY) 
+			{
+				getSoundManager().play(event.getName(), event.isLoop());
+			}
+			else if (event.getType() == GameSoundEvent.TYPE_STOP)
+			{
+				getSoundManager().stop(event.getName());
+			}
+			else if (event.getType() == GameSoundEvent.TYPE_STOP_ALL)
+			{
+				getSoundManager().stopAll();
+			}
+			else if (event.getType() == GameSoundEvent.TYPE_PAUSE)
+			{
+				this.getSoundManager().setPaused(true);
+				this.setSoundPausedSetting(true);
+			}
+			else if (event.getType() == GameSoundEvent.TYPE_UNPAUSE)
+			{
+				this.getSoundManager().setPaused(false);
+				this.setSoundPausedSetting(false);
+			}
 		}
 	}	
 	

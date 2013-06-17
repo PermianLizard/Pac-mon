@@ -4,12 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import pacmon.model.Game;
+import pacmon.model.GameSoundEvent;
 import pacmon.model.level.Level;
 import pacmon.model.level.LevelMode;
 import pacmon.model.maze.Maze;
 import pacmon.model.maze.MazeTile;
 import pacmon.model.maze.Position;
-import pacmon.sound.SoundManager;
+import pacmon.sound.SoundLoader;
 
 public abstract class Monster extends Entity 
 {
@@ -74,7 +76,7 @@ public abstract class Monster extends Entity
 	{
 		setMode(MonsterMode.DEAD);
 		
-		SoundManager.getInstance().play(SoundManager.EAT_GHOST, false);
+		Game.getInstance().addSoundEvent(GameSoundEvent.TYPE_PLAY, SoundLoader.EAT_GHOST, false);
 	}
 	
 	protected void decideDirection(int currentTileX, int currentTileY, Maze maze)

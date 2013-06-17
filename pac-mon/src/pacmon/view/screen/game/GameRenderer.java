@@ -48,7 +48,7 @@ public class GameRenderer
 		EntityRenderer.renderPinky(g, pinky, xOffset, yOffset, flashOn);
 		EntityRenderer.renderInky(g, inky, xOffset, yOffset, flashOn);
 		EntityRenderer.renderClyde(g, clyde, xOffset, yOffset, flashOn);
-		EntityRenderer.renderPacMon(g, pacMon, xOffset, yOffset, game.getLevel().isPacMonDead());
+		EntityRenderer.renderPacMon(g, pacMon, xOffset, yOffset, game.getLevel().isPacMonDead(), game.isPaused());
 		
 		if (game.isInLevelStartDelay())
 		{

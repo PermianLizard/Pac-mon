@@ -21,7 +21,7 @@ public class MenuScreen extends Screen
 	
 	public MenuScreen(String name, RootManager rootManager)
 	{
-		super(name, rootManager);
+		super(name, rootManager, 3);
 		
 		components = new ArrayList<Component>();
 		componentEventActionMap = new HashMap<Component,Map<String,String>>();

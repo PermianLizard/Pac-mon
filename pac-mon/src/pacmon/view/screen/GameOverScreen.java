@@ -13,7 +13,7 @@ public class GameOverScreen extends Screen
 	
 	public GameOverScreen(String name, RootManager rootManager, String exitScreenName) 
 	{
-		super(name, rootManager);
+		super(name, rootManager, 3);
 		
 		this.exitScreenName = exitScreenName;
 	}

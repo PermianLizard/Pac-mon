@@ -1,11 +1,13 @@
 package pacmon.model;
 
+import java.util.LinkedList;
+
 import pacmon.model.level.Level;
 import pacmon.model.level.LevelMode;
 import pacmon.model.level.LevelState;
 import pacmon.model.maze.MazeItem;
 import pacmon.model.maze.MazeManager;
-import pacmon.sound.SoundManager;
+import pacmon.sound.SoundLoader;
 
 public class Game 
 {
@@ -61,27 +63,54 @@ public class Game
 		pacMonDeathCountdown = 0;
 		
 		started = false;
+		
+		soundEventQueue = new LinkedList<GameSoundEvent>();
+	}
+	
+	public GameSoundEvent pollSoundEvent() 
+	{
+		return this.soundEventQueue.poll();
+	}
+	
+	public boolean hasSoundEvent() {
+		return !this.soundEventQueue.isEmpty();
+	}
+	
+	public void addSoundEvent(int type) {
+		this.addSoundEvent(type, null);
+	}
+	
+	public void addSoundEvent(int type, String name) {
+		this.addSoundEvent(type, name, false);
+	}
+	
+	public void addSoundEvent(int type, String name, boolean loop) {
+		this.soundEventQueue.add(new GameSoundEvent(type, name, loop));
 	}
 	
 	// Game control
 	public void controlUp()
 	{
-		level.controlUp();
+		if (!this.paused)
+			level.controlUp();
 	}
 	
 	public void controlLeft()
 	{
-		level.controlLeft();
+		if (!this.paused)
+			level.controlLeft();
 	}
 	
 	public void controlDown()
 	{
-		level.controlDown();
+		if (!this.paused)
+			level.controlDown();
 	}
 	
 	public void controlRight()
 	{
-		level.controlRight();
+		if (!this.paused)
+			level.controlRight();
 	}
 	
 	public void controlPause()
@@ -89,9 +118,15 @@ public class Game
 		paused = !paused;
 		
 		if (paused)
-			SoundManager.getInstance().setPaused(true);
-		else
-			SoundManager.getInstance().setPaused(false);
+		{
+			addSoundEvent(GameSoundEvent.TYPE_PAUSE);
+			//SoundLoader.getInstance().setPaused(true);
+		}
+		else 
+		{
+			addSoundEvent(GameSoundEvent.TYPE_UNPAUSE);
+			//SoundLoader.getInstance().setPaused(false);
+		}
 	}
 	
 	public boolean isPaused()
@@ -118,8 +153,11 @@ public class Game
 	{		
 		if (!started)
 		{
-			SoundManager.getInstance().stopAll();
-			SoundManager.getInstance().play(SoundManager.BEGINNING, false);
+			//SoundManager.getInstance().stopAll();
+			//SoundManager.getInstance().play(SoundManager.BEGINNING, false);
+			this.addSoundEvent(GameSoundEvent.TYPE_STOP_ALL);
+			this.addSoundEvent(GameSoundEvent.TYPE_PLAY, SoundLoader.BEGINNING);
+			
 			started = true;
 		}
 		
@@ -166,8 +204,10 @@ public class Game
 					state.setLivesLeft(3);				
 					
 					levelStartCountdown = LEVEL_START_DELEY;
-					SoundManager.getInstance().stopAll();
-					SoundManager.getInstance().play(SoundManager.BEGINNING, false);
+					//SoundManager.getInstance().stopAll();
+					//SoundManager.getInstance().play(SoundManager.BEGINNING, false);
+					this.addSoundEvent(GameSoundEvent.TYPE_STOP_ALL);
+					this.addSoundEvent(GameSoundEvent.TYPE_PLAY, SoundLoader.BEGINNING);
 					
 					System.out.println("Level "+state.getLevelNum());
 				}
@@ -189,8 +229,10 @@ public class Game
 					{
 						//level = new Level(this);
 						levelStartCountdown = LEVEL_START_DELEY;
-						SoundManager.getInstance().stopAll();
-						SoundManager.getInstance().play(SoundManager.BEGINNING, false);
+						//SoundManager.getInstance().stopAll();
+						//SoundManager.getInstance().play(SoundManager.BEGINNING, false);
+						this.addSoundEvent(GameSoundEvent.TYPE_STOP_ALL);
+						this.addSoundEvent(GameSoundEvent.TYPE_PLAY, SoundLoader.BEGINNING);
 						
 						state.setLivesLeft(state.getLivesLeft() - 1);
 						level.setState(currentState);
@@ -204,7 +246,8 @@ public class Game
 				if (level.isComplete())
 				{
 					levelCompleteCountdown = LEVEL_COMPLETE_DELEY;
-					SoundManager.getInstance().stopAll();
+					//SoundManager.getInstance().stopAll();
+					this.addSoundEvent(GameSoundEvent.TYPE_STOP_ALL);
 					
 					System.out.println("Level "+state.getLevelNum() + " complete");
 				}
@@ -213,12 +256,17 @@ public class Game
 				{
 					pacMonDeathCountdown = PAC_MAN_DEATH_DELEY;
 
-					SoundManager.getInstance().stopAll();
-					SoundManager.getInstance().play(SoundManager.DEATH, false);
+					//SoundManager.getInstance().stopAll();
+					//SoundManager.getInstance().play(SoundManager.DEATH, false);					
+					//this.addSoundEvent(GameSoundEvent.TYPE_STOP_ALL);
+					this.addSoundEvent(GameSoundEvent.TYPE_STOP, SoundLoader.INTERMISSION);
+					this.addSoundEvent(GameSoundEvent.TYPE_PLAY, SoundLoader.DEATH);
 				}
 			}
 		}
 	}	
+	
+	private LinkedList<GameSoundEvent> soundEventQueue;
 	
 	private GameState state;
 	

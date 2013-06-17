@@ -18,7 +18,7 @@ import pacmon.model.level.LevelState;
 
 public class EntityRenderer 
 {
-	public static void renderPacMon(Graphics2D g, PacMon pacMon, int xOffset, int yOffset, boolean isDead)
+	public static void renderPacMon(Graphics2D g, PacMon pacMon, int xOffset, int yOffset, boolean isDead, boolean isPaused)
 	{
 		BufferedImage spriteImage = SpriteManager.getPacMonSpriteImage();
 		
@@ -47,7 +47,8 @@ public class EntityRenderer
 		
 		if (isDead)
 		{
-			++timePacMonDead;
+			if (!isPaused)
+				++timePacMonDead;
 			
 			int stateFrame = 6;
 			
@@ -69,8 +70,6 @@ public class EntityRenderer
 		else if (pacMonState.equals(EntityState.MOVING))
 		{
 			LevelState levelState = pacMon.getLevel().getState();
-			
-			float pns = levelState.getPacManNormalSpeed();
 			
 			int frameTime = 0;
 			if (!levelState.getMode().equals(LevelMode.FRIGHTENED))

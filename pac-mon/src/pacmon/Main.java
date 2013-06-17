@@ -19,7 +19,7 @@ import pacmon.control.action.ExitAction;
 import pacmon.control.action.ResetGameAction;
 import pacmon.control.action.ShowGameScreenAction;
 import pacmon.model.maze.Maze;
-import pacmon.sound.SoundManager;
+import pacmon.sound.SoundLoader;
 import pacmon.view.component.Component;
 import pacmon.view.screen.GameOverScreen;
 import pacmon.view.screen.GameScreen;
@@ -80,7 +80,7 @@ public class Main implements Runnable
 		
 		try 
 		{
-			SoundManager.getInstance().loadAll();
+			SoundLoader.getInstance().loadAll();
 		} 
 		catch (IOException e) 
 		{

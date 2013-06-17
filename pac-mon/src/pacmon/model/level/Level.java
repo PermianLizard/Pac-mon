@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import pacmon.model.Game;
+import pacmon.model.GameSoundEvent;
 import pacmon.model.entity.Blinky;
 import pacmon.model.entity.Clyde;
 import pacmon.model.entity.Entity;
@@ -15,7 +17,7 @@ import pacmon.model.entity.PacMon;
 import pacmon.model.entity.Pinky;
 import pacmon.model.maze.Maze;
 import pacmon.model.maze.MazeItem;
-import pacmon.sound.SoundManager;
+import pacmon.sound.SoundLoader;
 
 public class Level 
 {
@@ -236,7 +238,8 @@ public class Level
 			frightenedCooldown = -1;
 			frightenedMonstersEaten = 0;
 			
-			SoundManager.getInstance().stop(SoundManager.INTERMISSION);
+			//SoundManager.getInstance().stop(SoundManager.INTERMISSION);
+			Game.getInstance().addSoundEvent(GameSoundEvent.TYPE_STOP, SoundLoader.INTERMISSION);
 			
 			resumeLevelMode();			
 		}
@@ -363,7 +366,8 @@ public class Level
 			frightenedCooldown = state.getFrightenedDuration();	
 			frightenedMonstersEaten = 0;
 			
-			SoundManager.getInstance().play(SoundManager.INTERMISSION, true);
+			//SoundManager.getInstance().play(SoundManager.INTERMISSION, true);
+			Game.getInstance().addSoundEvent(GameSoundEvent.TYPE_PLAY, SoundLoader.INTERMISSION, false);
 		}
 	}
 	
@@ -643,7 +647,7 @@ public class Level
 			monster.attemptReverseDirection(state.getMaze());
 		}
 	}
-		
+	
 	private LevelState state;
 	private PacMon pacMon;
 	private Blinky blinky;

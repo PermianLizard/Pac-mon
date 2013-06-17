@@ -1,11 +1,13 @@
 package pacmon.model.entity;
 
+import pacmon.model.Game;
+import pacmon.model.GameSoundEvent;
 import pacmon.model.level.Level;
 import pacmon.model.level.LevelMode;
 import pacmon.model.maze.Maze;
 import pacmon.model.maze.MazeItem;
 import pacmon.model.maze.Position;
-import pacmon.sound.SoundManager;
+import pacmon.sound.SoundLoader;
 
 public class PacMon extends Entity 
 {
@@ -123,7 +125,8 @@ public class PacMon extends Entity
 			if (item.equals(MazeItem.Dot))
 			{
 				//if (!SoundManager.getInstance().isPlaying(SoundManager.CHOMP))
-				SoundManager.getInstance().play(SoundManager.CHOMP, false);
+				//SoundManager.getInstance().play(SoundManager.CHOMP, false);
+				Game.getInstance().addSoundEvent(GameSoundEvent.TYPE_PLAY, SoundLoader.CHOMP, false);
 			}
 			else if (item.equals(MazeItem.Energizer))
 			{
@@ -131,12 +134,9 @@ public class PacMon extends Entity
 			}
 			else if (item.isBonus())
 			{
-				SoundManager.getInstance().play(SoundManager.EAT_FRUIT, false);
+				//SoundManager.getInstance().play(SoundManager.EAT_FRUIT, false);
+				Game.getInstance().addSoundEvent(GameSoundEvent.TYPE_PLAY, SoundLoader.EAT_FRUIT, false);
 			}
-		}
-		else 
-		{
-			SoundManager.getInstance().stop(SoundManager.CHOMP);
 		}
 	}
 	

@@ -1,58 +1,29 @@
 package pacmon.sound;
 
 import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
-import javax.sound.sampled.AudioFormat;
-import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.DataLine;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.SourceDataLine;
-import javax.sound.sampled.UnsupportedAudioFileException;
 
 import pacmon.sound.util.LoopingByteInputStream;
 import pacmon.sound.util.ThreadPool;
 
-public class SoundManager extends ThreadPool 
-{
+public class SoundManager extends ThreadPool  {
 
-	private static SoundManager instance;
-
-	public static final String DEATH = "death.wav";
-	public static final String CHOMP = "chomp.wav";
-	public static final String BEGINNING = "beginning.wav";
-	public static final String EAT_FRUIT = "eatfruit.wav";
-	public static final String EAT_GHOST = "eatghost.wav";
-	public static final String INTERMISSION = "intermission.wav";
-	
-	public static final String[] SOUNDS = {DEATH, CHOMP, BEGINNING, EAT_FRUIT, EAT_GHOST, INTERMISSION};
-	
 	private Object pausedLock;
     private boolean paused;
     
     private List<SoundPlayer> activeSoundList;
 	
-	public static SoundManager getInstance() 
-	{
-		if (instance == null)
-			instance = new SoundManager();
-		return instance;
-	}
-	
-	private SoundManager() 
-	{
-		super(20);
-		
-		soundMap = new HashMap<String, Sound>();
+	public SoundManager(int threads) {
+		super(threads);
 		
 		pausedLock = new Object();
 		
@@ -65,21 +36,13 @@ public class SoundManager extends ThreadPool
         }
 	}
 	
-	public void loadAll() throws IOException, UnsupportedAudioFileException
-	{
-		for (String name : SOUNDS)
-		{
-			loadSound(name);	
-		}
-	}
-	
 	public void setPaused(boolean paused) 
 	{
         if (this.paused != paused) 
         {
             synchronized (pausedLock) 
             {
-                this.paused = paused;
+                this.paused = paused; 
                 if (!paused) 
                 {
                     // restart sounds
@@ -99,7 +62,7 @@ public class SoundManager extends ThreadPool
 		if (isPlaying(name))
 			this.stop(name);
 		
-		Sound sound = soundMap.get(name);
+		Sound sound = SoundLoader.getInstance().getSound(name);
 		if (sound == null)
 		{
 			// TODO
@@ -151,24 +114,6 @@ public class SoundManager extends ThreadPool
 	
 	protected void threadStopped() 
 	{
-	}
-	
-	private void loadSound(String name) throws IOException, UnsupportedAudioFileException
-	{
-		AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File(String.format("sounds/%s", name)));
-		
-		int length = (int)(audioStream.getFrameLength() * audioStream.getFormat().getFrameSize());
-		
-		byte[] samples = new byte[length];
-		DataInputStream is = new DataInputStream(audioStream);
-        is.readFully(samples);
-        is.close();
-        
-        AudioFormat audioFormat = audioStream.getFormat();
-        
-        Sound sound = new Sound(samples, audioFormat);
-		
-        soundMap.put(name, sound);
 	}
 	
 	private void soundStarted(SoundPlayer player)
@@ -307,7 +252,5 @@ public class SoundManager extends ThreadPool
             line.close();
         }
 	}
-	
-	private Map<String, Sound> soundMap;
 
 }

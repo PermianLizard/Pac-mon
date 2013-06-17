@@ -13,11 +13,12 @@ import pacmon.control.RootManager;
 import pacmon.control.action.Action;
 import pacmon.control.event.EventGenerator;
 import pacmon.control.event.EventListener;
+import pacmon.sound.SoundManager;
 
 public class Screen  implements EventListener
 {
 	
-	public Screen(String name, RootManager rootManager)
+	public Screen(String name, RootManager rootManager, int soundThreads)
 	{
 		this.name = name;
 		this.rootManager = rootManager;
@@ -31,6 +32,8 @@ public class Screen  implements EventListener
 		g.dispose();
 		
 		actionMap = new HashMap<String,List<Action>>();
+		
+		soundManager = new SoundManager(soundThreads);
 	}
 	
 	public String getName()
@@ -99,9 +102,25 @@ public class Screen  implements EventListener
 		}
 	}
 	
+	public boolean isSoundPausedSetting() {
+		return soundPausedSetting;
+	}
+
+	public void setSoundPausedSetting(boolean soundPausedSetting) {
+		this.soundPausedSetting = soundPausedSetting;
+	}
+
+	public SoundManager getSoundManager()
+	{
+		return soundManager;
+	}
+	
 	private String name;	
 	private RootManager rootManager;	
 	private BufferedImage image;
 	
 	private Map<String,List<Action>> actionMap;
+	
+	private SoundManager soundManager;
+	private boolean soundPausedSetting;
 }
