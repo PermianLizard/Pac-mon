@@ -36,12 +36,22 @@ public class RootManager implements KeyListener
 	public void keyPressed(KeyEvent keyEvent) 
 	{
 		keyStateBitSet.set(keyEvent.getKeyCode());
+		
+		if (currentScreen != null)
+		{
+			currentScreen.keyPressed(keyEvent);
+		}
 	}
 
 	@Override
 	public void keyReleased(KeyEvent keyEvent) 
 	{
 		keyStateBitSet.set(keyEvent.getKeyCode(), false);
+		
+		if (currentScreen != null)
+		{
+			currentScreen.keyReleased(keyEvent);
+		}
 	}
 
 	@Override

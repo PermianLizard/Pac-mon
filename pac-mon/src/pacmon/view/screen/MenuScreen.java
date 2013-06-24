@@ -103,7 +103,7 @@ public class MenuScreen extends Screen
 	@Override
 	public void onEventTriggered(String eventName, EventGenerator source) 
 	{
-		if (source.getClass().isAssignableFrom(Component.class))
+		if (source != null && source.getClass().isAssignableFrom(Component.class))
 		{
 			Component component = (Component)source;
 			

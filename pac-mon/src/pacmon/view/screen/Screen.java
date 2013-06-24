@@ -2,6 +2,7 @@ package pacmon.view.screen;
 
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -54,6 +55,14 @@ public class Screen  implements EventListener
 	public void update(BitSet keyStateBitSet)
 	{
 	}	
+	
+	public void keyPressed(KeyEvent keyEvent) 
+	{
+	}
+
+	public void keyReleased(KeyEvent keyEvent) 
+	{
+	}
 	
 	public void onShow()
 	{

@@ -1,6 +1,7 @@
 package pacmon.view.screen;
 
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 
@@ -42,6 +43,16 @@ public class GameMenuScreen extends MenuScreen {
 	{
 		super.render(g);	
 		//GameRenderer.renderGame(g, Game.getInstance());
+	}
+	
+	@Override
+	public void keyPressed(KeyEvent keyEvent) {
+		super.keyPressed(keyEvent);
+		
+		if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE) 
+		{
+			this.onEventTriggered("Continue", null);
+		}
 	}
 	
 }

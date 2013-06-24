@@ -33,11 +33,21 @@ public class GameScreen extends Screen
 		
 	}
 	
+	@Override
+	public void keyPressed(KeyEvent keyEvent) {
+		super.keyPressed(keyEvent);
+		
+		if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE) 
+		{
+			getRootManager().showScreen(optionsScreenName);
+		}
+	}
+	
 	public void update(BitSet keyStateBitSet)
 	{
 		super.update(keyStateBitSet);
 		
-		boolean escKey = keyStateBitSet.get(KeyEvent.VK_ESCAPE);
+		//boolean escKey = keyStateBitSet.get(KeyEvent.VK_ESCAPE);
 		boolean upKey = keyStateBitSet.get(KeyEvent.VK_UP);
 		boolean leftKey = keyStateBitSet.get(KeyEvent.VK_LEFT);
 		boolean downKey = keyStateBitSet.get(KeyEvent.VK_DOWN);
@@ -45,11 +55,6 @@ public class GameScreen extends Screen
 		boolean pauseKey = keyStateBitSet.get(KeyEvent.VK_P);
 		
 		Game game = Game.getInstance();
-		
-		if (escKey)
-		{
-			getRootManager().showScreen(optionsScreenName);
-		}
 		
 		if (pauseKey && !pausedKeyDownCache)
 		{
