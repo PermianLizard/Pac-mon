@@ -21,6 +21,7 @@ import pacmon.control.action.ShowGameScreenAction;
 import pacmon.model.maze.Maze;
 import pacmon.sound.SoundLoader;
 import pacmon.view.component.Component;
+import pacmon.view.screen.GameMenuScreen;
 import pacmon.view.screen.GameOverScreen;
 import pacmon.view.screen.GameScreen;
 import pacmon.view.screen.MenuScreen;
@@ -131,7 +132,7 @@ public class Main implements Runnable
 	
 	public static void createGameOptionsScreen(RootManager rootManager)
 	{
-		MenuScreen gameMenuScreen = new MenuScreen(SCREEN_GAME_MENU, rootManager);	
+		MenuScreen gameMenuScreen = new GameMenuScreen(SCREEN_GAME_MENU, rootManager);	
 		
 		gameMenuScreen.getImage().getGraphics().drawImage(ImageManager.getScreenGameOptionsImage(), 0, 0, null);
 		

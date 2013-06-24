@@ -90,6 +90,11 @@ public class Screen  implements EventListener
 		return this.image;
 	}
 	
+	public void setImage(BufferedImage image) 
+	{
+		this.image = image;
+	}
+
 	protected void executeActions(String actionGroup)
 	{
 		List<Action> actionList = actionMap.get(actionGroup);

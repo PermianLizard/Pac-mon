@@ -77,6 +77,7 @@ public class MenuScreen extends Screen
 			boolean upKey = keyStateBitSet.get(KeyEvent.VK_UP);
 			boolean downKey = keyStateBitSet.get(KeyEvent.VK_DOWN);
 			boolean enterKey = keyStateBitSet.get(KeyEvent.VK_ENTER);
+			//boolean escKey = keyStateBitSet.get(KeyEvent.VK_ESCAPE);
 			
 			if (upKey && !downKey && !enterKey)
 			{
