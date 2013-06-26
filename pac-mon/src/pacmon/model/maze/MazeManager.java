@@ -18,7 +18,7 @@ public class MazeManager
 		}
 		return instance;
 	}
-
+	
 	private static String[] MAZE_1_DESIGN = 
 	{
 		 "############################"

@@ -3,13 +3,16 @@ package pacmon.control;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseMotionListener;
 import java.util.BitSet;
 import java.util.HashMap;
 import java.util.Map;
 
 import pacmon.view.screen.Screen;
 
-public class RootManager implements KeyListener
+public class RootManager implements KeyListener, MouseListener, MouseMotionListener
 {
 	
 	public RootManager(int width, int height)
@@ -56,6 +59,69 @@ public class RootManager implements KeyListener
 
 	@Override
 	public void keyTyped(KeyEvent keyEvent) {}
+
+	@Override
+	public void mouseClicked(MouseEvent mouseEvent) 
+	{
+		if (currentScreen != null)
+		{
+			currentScreen.mouseClicked(mouseEvent);
+		}
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent mouseEvent) 
+	{
+		if (currentScreen != null)
+		{
+			currentScreen.mouseEntered(mouseEvent);
+		}
+	}
+
+	@Override
+	public void mouseExited(MouseEvent mouseEvent) 
+	{
+		if (currentScreen != null)
+		{
+			currentScreen.mouseExited(mouseEvent);
+		}
+	}
+
+	@Override
+	public void mousePressed(MouseEvent mouseEvent) 
+	{
+		if (currentScreen != null)
+		{
+			currentScreen.mousePressed(mouseEvent);
+		}
+	}
+
+	@Override
+	public void mouseReleased(MouseEvent mouseEvent) 
+	{
+		if (currentScreen != null)
+		{
+			currentScreen.mouseReleased(mouseEvent);
+		}
+	}
+
+	@Override
+	public void mouseDragged(MouseEvent mouseEvent) 
+	{
+		if (currentScreen != null)
+		{
+			currentScreen.mouseDragged(mouseEvent);
+		}
+	}
+
+	@Override
+	public void mouseMoved(MouseEvent mouseEvent) 
+	{
+		if (currentScreen != null)
+		{
+			currentScreen.mouseMoved(mouseEvent);
+		}
+	}
 
 	public void render(Graphics2D g)
 	{

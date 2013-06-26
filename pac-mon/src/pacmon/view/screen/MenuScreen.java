@@ -3,7 +3,9 @@ package pacmon.view.screen;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.HashMap;
@@ -98,6 +100,50 @@ public class MenuScreen extends Screen
 				keyStateBitSet.set(KeyEvent.VK_ENTER, false);
 			}
 		}
+	}
+	
+	public void mouseClicked(MouseEvent mouseEvent) 
+	{
+		int mx = mouseEvent.getX();
+		int my = mouseEvent.getY();
+		
+		if (focusedComponent != null && isComponentHit(mx, my, focusedComponent))
+		{
+			focusedComponent.trigger();
+		}
+	}
+	
+	public void mouseMoved(MouseEvent mouseEvent) 
+	{
+		int mx = mouseEvent.getX();
+		int my = mouseEvent.getY();
+		
+		for (Component comp : components)
+		{
+			if (isComponentHit(mx, my, comp))
+			{
+				focusedComponent = comp;
+				break;
+			}
+		}
+	}
+	
+	private boolean isComponentHit(int x, int y, Component comp)
+	{
+		int cx = comp.getX();
+		int cy = comp.getY();
+		int cw = comp.getImage().getWidth();
+		int ch = comp.getImage().getHeight();
+			
+		if (x >= cx && x <= cx + cw)
+		{
+			if (y >= cy && y <= cy + ch)
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	@Override

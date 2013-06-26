@@ -316,11 +316,15 @@ public class Main implements Runnable
 		if (this.rootManager != null)
 		{
 			this.canvas.removeKeyListener(rootManager);
+			this.canvas.removeMouseListener(rootManager);
+			this.canvas.removeMouseMotionListener(rootManager);
 		}		
 		this.rootManager = rootManager;
 		if (rootManager != null)
 		{
 			this.canvas.addKeyListener(rootManager);
+			this.canvas.addMouseListener(rootManager);
+			this.canvas.addMouseMotionListener(rootManager);
 		}
 	}
 	

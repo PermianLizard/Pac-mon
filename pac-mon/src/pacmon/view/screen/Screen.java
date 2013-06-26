@@ -3,6 +3,7 @@ package pacmon.view.screen;
 import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.BitSet;
@@ -62,6 +63,41 @@ public class Screen  implements EventListener
 
 	public void keyReleased(KeyEvent keyEvent) 
 	{
+	}
+	
+	public void mouseClicked(MouseEvent mouseEvent) 
+	{
+
+	}
+
+	public void mouseEntered(MouseEvent mouseEvent) 
+	{
+		
+	}
+
+	public void mouseExited(MouseEvent mouseEvent) 
+	{
+		
+	}
+
+	public void mousePressed(MouseEvent mouseEvent) 
+	{
+		
+	}
+
+	public void mouseReleased(MouseEvent arg0) 
+	{
+		
+	}
+	
+	public void mouseDragged(MouseEvent mouseEvent) 
+	{
+		
+	}
+
+	public void mouseMoved(MouseEvent mouseEvent) 
+	{
+		
 	}
 	
 	public void onShow()
