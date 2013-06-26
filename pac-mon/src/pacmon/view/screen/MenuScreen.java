@@ -3,7 +3,6 @@ package pacmon.view.screen;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
@@ -123,9 +122,11 @@ public class MenuScreen extends Screen
 			if (isComponentHit(mx, my, comp))
 			{
 				focusedComponent = comp;
-				break;
+				return;
 			}
 		}
+		
+		focusedComponent = null; // deselect
 	}
 	
 	private boolean isComponentHit(int x, int y, Component comp)
@@ -216,7 +217,8 @@ public class MenuScreen extends Screen
 				int idx = components.indexOf(focusedComponent);				
 				if (idx == 0)
 				{
-					focusedComponent = null;
+					//focusedComponent = null;
+					focusedComponent = components.get(components.size() - 1);
 				}
 				else
 				{
