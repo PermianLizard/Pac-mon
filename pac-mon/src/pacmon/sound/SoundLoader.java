@@ -16,6 +16,7 @@ public class SoundLoader
 
 	private static SoundLoader instance;
 
+	public static final String SELECT = "select.wav";
 	public static final String DEATH = "death.wav";
 	public static final String CHOMP = "chomp.wav";
 	public static final String BEGINNING = "beginning.wav";
@@ -23,7 +24,7 @@ public class SoundLoader
 	public static final String EAT_GHOST = "eatghost.wav";
 	public static final String INTERMISSION = "intermission.wav";
 	
-	public static final String[] SOUNDS = {DEATH, CHOMP, BEGINNING, EAT_FRUIT, EAT_GHOST, INTERMISSION};
+	public static final String[] SOUNDS = {SELECT, DEATH, CHOMP, BEGINNING, EAT_FRUIT, EAT_GHOST, INTERMISSION};
 	
 	public static SoundLoader getInstance() 
 	{

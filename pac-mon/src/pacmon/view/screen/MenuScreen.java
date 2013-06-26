@@ -13,6 +13,7 @@ import java.util.Map;
 
 import pacmon.control.RootManager;
 import pacmon.control.event.EventGenerator;
+import pacmon.sound.SoundLoader;
 import pacmon.view.component.Component;
 
 public class MenuScreen extends Screen 
@@ -117,16 +118,25 @@ public class MenuScreen extends Screen
 		int mx = mouseEvent.getX();
 		int my = mouseEvent.getY();
 		
+		boolean compHit = false;
 		for (Component comp : components)
 		{
 			if (isComponentHit(mx, my, comp))
 			{
-				focusedComponent = comp;
-				return;
+				compHit = true;
+				if (this.focusedComponent != comp)
+				{
+					setFocusedComponent(comp);
+					break;
+				}
 			}
 		}
 		
-		focusedComponent = null; // deselect
+		if (!compHit) 
+		{
+			System.out.println("reached here");
+			setFocusedComponent(null);
+		}
 	}
 	
 	private boolean isComponentHit(int x, int y, Component comp)
@@ -173,12 +183,13 @@ public class MenuScreen extends Screen
 	
 	public void onShow()
 	{
-		this.focusNextComponent();
+		//this.focusNextComponent();
+		setFocusedComponent(null);
 	}
 	
 	public void onHide()
 	{
-		this.focusedComponent = null;
+		//setFocusedComponent(null);
 	}
 	
 	private void focusNextComponent()
@@ -187,18 +198,18 @@ public class MenuScreen extends Screen
 		{		
 			if (focusedComponent == null)
 			{
-				focusedComponent = components.get(0);
+				setFocusedComponent(components.get(0));
 			}
 			else
 			{
 				int idx = components.indexOf(focusedComponent);				
 				if (idx == components.size() - 1)
 				{
-					focusedComponent = components.get(0);
+					setFocusedComponent(components.get(0));
 				}
 				else
 				{
-					focusedComponent = components.get(idx + 1);
+					setFocusedComponent(components.get(idx + 1));
 				}
 			}
 		}
@@ -210,21 +221,30 @@ public class MenuScreen extends Screen
 		{		
 			if (focusedComponent == null)
 			{
-				focusedComponent = components.get(components.size() - 1);
+				setFocusedComponent(components.get(components.size() - 1));
 			}
 			else
 			{
 				int idx = components.indexOf(focusedComponent);				
 				if (idx == 0)
 				{
-					//focusedComponent = null;
-					focusedComponent = components.get(components.size() - 1);
+					setFocusedComponent(components.get(components.size() - 1));
 				}
 				else
 				{
-					focusedComponent = components.get(idx - 1);
+					setFocusedComponent(components.get(idx - 1));
 				}
 			}
+		}
+	}
+	
+	private void setFocusedComponent(Component comp)
+	{
+		focusedComponent = comp;
+		if (comp != null)
+		{
+			if (!getSoundManager().isPlaying(SoundLoader.SELECT))
+				getSoundManager().play(SoundLoader.SELECT, false);
 		}
 	}
 	
