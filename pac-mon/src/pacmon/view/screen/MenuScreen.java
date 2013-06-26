@@ -134,7 +134,6 @@ public class MenuScreen extends Screen
 		
 		if (!compHit) 
 		{
-			System.out.println("reached here");
 			setFocusedComponent(null);
 		}
 	}
