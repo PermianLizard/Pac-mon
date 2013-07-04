@@ -15,6 +15,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 import pacmon.control.RootManager;
+import pacmon.control.action.EndGameAction;
 import pacmon.control.action.ExitAction;
 import pacmon.control.action.ResetGameAction;
 import pacmon.control.action.ShowGameScreenAction;
@@ -24,8 +25,10 @@ import pacmon.view.component.Component;
 import pacmon.view.screen.GameMenuScreen;
 import pacmon.view.screen.GameOverScreen;
 import pacmon.view.screen.GameScreen;
+import pacmon.view.screen.HighScoresScreen;
 import pacmon.view.screen.MenuScreen;
 import pacmon.view.screen.Screen;
+import pacmon.view.screen.effect.MainMenuScreenEffect;
 
 public class Main implements Runnable
 {
@@ -94,7 +97,7 @@ public class Main implements Runnable
 			System.out.println("Unable to load sounds");
 			e.printStackTrace();
 			System.exit(-1);
-		}
+		}		
 	}
 	
 	public static void createMainMenuScreen(RootManager rootManager)
@@ -105,6 +108,7 @@ public class Main implements Runnable
 		
 		mainMenuScreen.addAction("New Game", new ShowGameScreenAction(SCREEN_GAME));
 		mainMenuScreen.addAction("New Game", new ResetGameAction());
+		mainMenuScreen.addAction("High Scores", new ShowGameScreenAction(SCREEN_HIGH_SCORE));
 		mainMenuScreen.addAction("Exit", new ExitAction());
 		
 		BufferedImage buttonNewGameImage = ImageManager.getButtonNewGameImage();
@@ -118,16 +122,29 @@ public class Main implements Runnable
 		mainMenuScreen.addComponent(newGameButton);
 		mainMenuScreen.setComponentEventActionGroup(newGameButton, Component.EVENT_TRIGGER, "New Game");
 		
+		BufferedImage buttonHighScoresImage = ImageManager.getButtonHighScoresImage();
+		Component highScoresButton = new Component(buttonNewGameImage.getWidth(), buttonNewGameImage.getHeight());
+		highScoresButton.setX(WIDTH / 2 - (newGameButton.getWidth() / 2)); 
+		highScoresButton.setY(205);
+		Graphics2D g2 = highScoresButton.getImage().createGraphics();
+		GraphicsManager.initializeGraphicsObject(g2);		
+		g2.drawImage(buttonHighScoresImage, 0, 0, null);
+		g2.dispose();
+		mainMenuScreen.addComponent(highScoresButton);
+		mainMenuScreen.setComponentEventActionGroup(highScoresButton, Component.EVENT_TRIGGER, "High Scores");
+		
 		BufferedImage buttonExitImage = ImageManager.getButtonExitImage();
 		Component exitButton = new Component(buttonExitImage.getWidth(), buttonExitImage.getHeight());
 		exitButton.setX(WIDTH / 2 - (exitButton.getWidth() / 2));
-		exitButton.setY(205);
-		Graphics2D g2 = exitButton.getImage().createGraphics();
-		GraphicsManager.initializeGraphicsObject(g2);
-		g2.drawImage(buttonExitImage, 0, 0, null);		
-		g2.dispose();		
+		exitButton.setY(260);
+		Graphics2D g3 = exitButton.getImage().createGraphics();
+		GraphicsManager.initializeGraphicsObject(g3);
+		g3.drawImage(buttonExitImage, 0, 0, null);		
+		g3.dispose();		
 		mainMenuScreen.addComponent(exitButton);
 		mainMenuScreen.setComponentEventActionGroup(exitButton, Component.EVENT_TRIGGER, "Exit");
+		
+		mainMenuScreen.addEffect(new MainMenuScreenEffect());
 	}
 	
 	public static void createGameOptionsScreen(RootManager rootManager)
@@ -138,6 +155,7 @@ public class Main implements Runnable
 		
 		gameMenuScreen.addAction("Continue", new ShowGameScreenAction(SCREEN_GAME));
 		gameMenuScreen.addAction("Quit", new ShowGameScreenAction(SCREEN_MAIN_MENU));
+		gameMenuScreen.addAction("Quit", new EndGameAction());
 		
 		BufferedImage buttonContinueImage = ImageManager.getButtonContinueImage();
 		Component continueGameButton = new Component(buttonContinueImage.getWidth(), buttonContinueImage.getHeight());
@@ -171,6 +189,9 @@ public class Main implements Runnable
 	{
 		Screen screen = new GameOverScreen(SCREEN_GAME_OVER, rootManager, SCREEN_MAIN_MENU);
 		
+		screen.addAction("Quit", new EndGameAction());
+		screen.addAction("Quit", new ShowGameScreenAction(SCREEN_MAIN_MENU));
+		
 		screen.getImage().getGraphics().drawImage(ImageManager.getScreenGameOverImage(), 0, 0, null);
 		
 		Font mainFont = FontManager.getFont(FontManager.DEFAULT).deriveFont((float)Maze.TILE_SIZE);	
@@ -194,6 +215,34 @@ public class Main implements Runnable
 		
 		g.dispose();
 	}
+	
+	public static void createHighScoresScreen(RootManager rootManager)
+	{
+		Screen screen = new HighScoresScreen(SCREEN_HIGH_SCORE, rootManager, SCREEN_MAIN_MENU);
+		
+		//screen.getImage().getGraphics().drawImage(ImageManager.getScreenGameOverImage(), 0, 0, null);
+		
+		Font mainFont = FontManager.getFont(FontManager.DEFAULT).deriveFont((float)Maze.TILE_SIZE);	
+		Font subFont = FontManager.getFont(FontManager.DEFAULT).deriveFont((float)Maze.TILE_SIZE - 3);
+		
+		BufferedImage image = screen.getImage();
+		Graphics2D g = image.createGraphics();
+		g.setColor(Color.WHITE);
+		
+		/*g.setFont(mainFont);
+		Rectangle2D mainBounds = g.getFontMetrics().getStringBounds(TEXT_GAME_OVER, g);
+		g.drawString(TEXT_GAME_OVER, 
+				(int)(image.getWidth() / 2) - (int)(mainBounds.getWidth() / 2), 
+				(int)(image.getHeight() / 2) - (int)(mainBounds.getHeight() / 2));
+		
+		g.setFont(subFont);
+		Rectangle2D subBounds = g.getFontMetrics().getStringBounds(TEXT_GAME_OVER_SUB, g);
+		g.drawString(TEXT_GAME_OVER_SUB, 
+				(int)(image.getWidth() / 2) - (int)(subBounds.getWidth() / 2), 
+				(int)(image.getHeight() / 2) - (int)(subBounds.getHeight() / 2) + (int)(mainBounds.getHeight()) + 20);*/
+		
+		//g.dispose();
+	}
 
 	public static void main(String[] args)
 	{
@@ -212,6 +261,7 @@ public class Main implements Runnable
 		createGameOptionsScreen(rootManager);
 		createGameScreen(rootManager);
 		createGameOverScreen(rootManager);
+		createHighScoresScreen(rootManager);
 		
 		rootManager.showScreen(SCREEN_MAIN_MENU);
 		main.setRootManager(rootManager);		
@@ -231,6 +281,7 @@ public class Main implements Runnable
 	private static final String SCREEN_GAME_MENU = "GAME MENU";
 	private static final String SCREEN_GAME = "GAME";
 	private static final String SCREEN_GAME_OVER = "GAME OVER";
+	private static final String SCREEN_HIGH_SCORE = "HIGH_SCORE";
 	
 	private static final String TEXT_GAME_OVER = "Game Over!";
 	private static final String TEXT_GAME_OVER_SUB = "Press <Enter> to continue";

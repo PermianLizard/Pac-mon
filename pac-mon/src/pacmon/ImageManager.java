@@ -16,6 +16,7 @@ public class ImageManager
 	public static final String SCREEN_GAME_OVER = "scr_game_over.png";
 	
 	public static final String BUTTON_NEW_GAME = "btn_new_game.png";
+	public static final String BUTTON_HIGH_SCORES = "btn_high_scores.png";
 	public static final String BUTTON_EXIT = "btn_exit.png";
 	public static final String BUTTON_CONTINUE = "btn_continue.png";
 	public static final String BUTTON_QUIT = "btn_quit.png";
@@ -27,6 +28,7 @@ public class ImageManager
 		screenGameOverImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+SCREEN_GAME_OVER));
 		
 		buttonNewGameImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+BUTTON_NEW_GAME));
+		buttonHighScoresImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+BUTTON_HIGH_SCORES));
 		buttonExitImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+BUTTON_EXIT));
 		buttonContinueImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+BUTTON_CONTINUE));
 		buttonQuitImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+BUTTON_QUIT));
@@ -39,6 +41,7 @@ public class ImageManager
 		screenGameOverImage = null;
 		
 		buttonNewGameImage = null;
+		buttonHighScoresImage = null;
 		buttonExitImage = null;
 		buttonContinueImage = null;
 		buttonQuitImage = null;
@@ -64,6 +67,11 @@ public class ImageManager
 		return buttonNewGameImage;
 	}
 	
+	public static BufferedImage getButtonHighScoresImage()
+	{
+		return buttonHighScoresImage;
+	}
+	
 	public static BufferedImage getButtonExitImage()
 	{
 		return buttonExitImage;
@@ -84,6 +92,7 @@ public class ImageManager
 	private static BufferedImage screenGameOverImage;
 	
 	private static BufferedImage buttonNewGameImage;
+	private static BufferedImage buttonHighScoresImage;
 	private static BufferedImage buttonExitImage;
 	private static BufferedImage buttonContinueImage;
 	private static BufferedImage buttonQuitImage;

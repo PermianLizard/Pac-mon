@@ -28,11 +28,6 @@ public class GameScreen extends Screen
 		GameRenderer.renderGame(g, Game.getInstance());
 	}
 	
-	public void onShow()
-	{
-		
-	}
-	
 	@Override
 	public void keyPressed(KeyEvent keyEvent) {
 		super.keyPressed(keyEvent);

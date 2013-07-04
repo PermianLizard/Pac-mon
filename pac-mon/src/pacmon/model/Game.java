@@ -1,7 +1,11 @@
 package pacmon.model;
 
+import java.io.IOException;
+import java.util.Calendar;
 import java.util.LinkedList;
 
+import pacmon.HighScoresManager;
+import pacmon.highscore.HighScoreTable;
 import pacmon.model.level.Level;
 import pacmon.model.level.LevelMode;
 import pacmon.model.level.LevelState;
@@ -15,6 +19,8 @@ public class Game
 	private static final int LEVEL_START_DELEY = 300;
 	private static final int LEVEL_COMPLETE_DELEY = 100;
 	private static final int PAC_MAN_DEATH_DELEY = 150;
+	
+	private static final int PAC_MAN_LIVES = 3;
 	
 	public static Game getInstance()
 	{
@@ -42,6 +48,11 @@ public class Game
 		instance = new Game();
 	}
 	
+	public void clear()
+	{
+		instance = null;
+	}
+	
 	public Level getLevel()
 	{
 		return level;
@@ -49,7 +60,7 @@ public class Game
 	
 	private Game()
 	{
-		GameState state = new GameState(1, 0, 3);	
+		GameState state = new GameState(1, 0, PAC_MAN_LIVES);	
 		setState(state);
 		
 		paused = false;

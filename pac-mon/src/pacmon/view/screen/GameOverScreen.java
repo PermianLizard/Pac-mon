@@ -31,7 +31,9 @@ public class GameOverScreen extends Screen
 		
 		if (enterKey)
 		{
-			getRootManager().showScreen(exitScreenName);
+			this.onEventTriggered("Quit", null);
+			
+			//getRootManager().showScreen(exitScreenName);
 		}
 	}
 	

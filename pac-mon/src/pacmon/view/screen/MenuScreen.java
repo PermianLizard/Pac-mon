@@ -182,12 +182,16 @@ public class MenuScreen extends Screen
 	
 	public void onShow()
 	{
-		//this.focusNextComponent();
-		setFocusedComponent(null);
+		super.onShow();
+		
+		if (this.focusedComponent == null)
+			this.focusNextComponent();
+		//setFocusedComponent(null);
 	}
 	
 	public void onHide()
 	{
+		super.onHide();
 		//setFocusedComponent(null);
 	}
 	

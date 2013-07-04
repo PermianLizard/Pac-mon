@@ -16,6 +16,7 @@ import pacmon.control.action.Action;
 import pacmon.control.event.EventGenerator;
 import pacmon.control.event.EventListener;
 import pacmon.sound.SoundManager;
+import pacmon.view.screen.effect.ScreenEffect;
 
 public class Screen  implements EventListener
 {
@@ -36,6 +37,8 @@ public class Screen  implements EventListener
 		actionMap = new HashMap<String,List<Action>>();
 		
 		soundManager = new SoundManager(soundThreads);
+		
+		effects = new ArrayList<ScreenEffect>();
 	}
 	
 	public String getName()
@@ -48,14 +51,44 @@ public class Screen  implements EventListener
 		return rootManager;
 	}	
 	
+	public void addEffect(ScreenEffect effect)
+	{
+		effects.add(effect);
+	}
+	
 	public void render(Graphics2D g)
 	{
+		for (ScreenEffect effect : effects) 
+		{
+			effect.render(this);
+		}
+		
 		g.drawImage(image, 0, 0, null);
 	}
 	
 	public void update(BitSet keyStateBitSet)
 	{
+		for (ScreenEffect effect : effects) 
+		{
+			effect.update(this);
+		}
 	}	
+	
+	public void onShow()
+	{
+		for (ScreenEffect effect : effects) 
+		{
+			effect.screenShow(this);
+		}
+	}
+	
+	public void onHide()
+	{
+		for (ScreenEffect effect : effects) 
+		{
+			effect.screenHide(this);
+		}
+	}
 	
 	public void keyPressed(KeyEvent keyEvent) 
 	{
@@ -96,16 +129,6 @@ public class Screen  implements EventListener
 	}
 
 	public void mouseMoved(MouseEvent mouseEvent) 
-	{
-		
-	}
-	
-	public void onShow()
-	{
-
-	}
-	
-	public void onHide()
 	{
 		
 	}
@@ -173,4 +196,7 @@ public class Screen  implements EventListener
 	
 	private SoundManager soundManager;
 	private boolean soundPausedSetting;
+	
+	private List<ScreenEffect> effects;
+	
 }
