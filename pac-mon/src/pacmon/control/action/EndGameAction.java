@@ -28,7 +28,7 @@ public class EndGameAction implements Action
 			
 			try 
 			{
-				HighScoresManager.registerScore("", score);
+				HighScoresManager.registerScore("", score, game.getState().getLevelNum());
 			} 
 			catch (IOException e) 
 			{

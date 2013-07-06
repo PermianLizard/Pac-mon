@@ -41,9 +41,9 @@ public class HighScoreTable implements Serializable
 		return Collections.unmodifiableList(entryList);
 	}
 	
-	public boolean processScore(String name, int score, Date date)
+	public boolean processScore(String name, int score, int level, Date date)
 	{
-		HighScoreEntry candidateEntry = new HighScoreEntry(name, score, date);
+		HighScoreEntry candidateEntry = new HighScoreEntry(name, score, level, date);
 		
 		if (entryList.size() == 0) // first entry
 		{
@@ -96,12 +96,15 @@ public class HighScoreTable implements Serializable
 		
 		private final String name;
 		private final int score;
+		private final int level;
 		private final Date date;
 		
-		public HighScoreEntry(String name, int score, Date date)
+		public HighScoreEntry(String name, int score, int level, Date date)
 		{
 			this.name = name;
+			
 			this.score = score;
+			this.level = level;
 			this.date = date;
 		}
 		
@@ -124,6 +127,11 @@ public class HighScoreTable implements Serializable
 		public int getScore() 
 		{
 			return score;
+		}
+
+		public int getLevel() 
+		{
+			return level;
 		}
 
 		public Date getDate() 

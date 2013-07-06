@@ -20,12 +20,14 @@ public class HighScoresScreen extends Screen
 
 	private static DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
 	
+	private static final int TABLE_HEADER_START_HEIGHT = 80;
 	private static final int TABLE_START_HEIGHT = 120;
 	private static final int TABLE_ROW_HEIGHT = 33;
 	
-	private static final int COL_1_POS = 90;
-	private static final int COL_2_POS = 115;
-	private static final int COL_3_POS = 260;
+	private static final int COL_1_POS = 40;
+	private static final int COL_2_POS = 70;
+	private static final int COL_3_POS = 130;
+	private static final int COL_4_POS = 260;
 	
 	private static final String NO_ENTRIES_TEXT = "-No Entries-";
 	
@@ -65,7 +67,7 @@ public class HighScoresScreen extends Screen
 
 	public void onHide()
 	{
-		entryList = null;
+		//entryList = null;
 	}
 	
 	public void render(Graphics2D g)
@@ -83,9 +85,26 @@ public class HighScoresScreen extends Screen
 		}
 		else
 		{
-			Font rankFont = FontManager.getFont(FontManager.DEFAULT).deriveFont(16.0f);	
+			Font defaultFont = FontManager.getFont(FontManager.DEFAULT).deriveFont(16.0f);
+			
+			Font rankFont = FontManager.getFont(FontManager.DEFAULT).deriveFont(18.0f);
+			Font levelFont = FontManager.getFont(FontManager.DEFAULT).deriveFont(18.0f);
 			Font scoreFont = FontManager.getFont(FontManager.DEFAULT).deriveFont(18.0f);
 			Font dateFont = FontManager.getFont(FontManager.DEFAULT).deriveFont(12.0f);
+			
+			g.setFont(defaultFont);
+			g.setColor(Color.WHITE);
+			g.drawString("#", COL_1_POS, TABLE_HEADER_START_HEIGHT);
+			
+			g.setFont(defaultFont);
+			g.setColor(Color.WHITE);
+			g.drawString("LVL", COL_2_POS, TABLE_HEADER_START_HEIGHT);
+			
+			g.setFont(defaultFont);
+			g.setColor(Color.WHITE);
+			g.drawString("SCORE", COL_3_POS, TABLE_HEADER_START_HEIGHT);
+			
+			g.drawLine(COL_1_POS, TABLE_HEADER_START_HEIGHT + 10, getRootManager().getWidth() - COL_1_POS, TABLE_HEADER_START_HEIGHT + 10);
 			
 			int i = 0;
 			for (HighScoreTable.HighScoreEntry entry : entryList)
@@ -94,13 +113,17 @@ public class HighScoresScreen extends Screen
 				g.setColor(Color.WHITE);
 				g.drawString(String.format("%s", i+1), COL_1_POS, TABLE_START_HEIGHT + (i * TABLE_ROW_HEIGHT));
 				
+				g.setFont(levelFont);
+				g.setColor(Color.WHITE);
+				g.drawString(String.format("%s", entry.getLevel()), COL_2_POS, TABLE_START_HEIGHT + (i * TABLE_ROW_HEIGHT));
+				
 				g.setFont(scoreFont);
 				g.setColor(Color.WHITE);
-				g.drawString(String.format("%s", entry.getScore()), COL_2_POS, TABLE_START_HEIGHT + (i * TABLE_ROW_HEIGHT));
+				g.drawString(String.format("%s", entry.getScore()), COL_3_POS, TABLE_START_HEIGHT + (i * TABLE_ROW_HEIGHT));
 				
 				g.setFont(dateFont);
 				g.setColor(Color.WHITE);
-				g.drawString(String.format("%s", dateFormatter.format(entry.getDate())), COL_3_POS, TABLE_START_HEIGHT + (i * TABLE_ROW_HEIGHT));
+				g.drawString(String.format("%s", dateFormatter.format(entry.getDate())), COL_4_POS, TABLE_START_HEIGHT + (i * TABLE_ROW_HEIGHT));
 				
 				++i;
 			}

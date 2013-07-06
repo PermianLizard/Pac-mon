@@ -12,10 +12,10 @@ import pacmon.highscore.HighScoreTable;
 
 public class HighScoresManager {
 
-	public static void registerScore(String name, int score) throws IOException, ClassNotFoundException
+	public static void registerScore(String name, int score, int level) throws IOException, ClassNotFoundException
 	{
 		HighScoreTable highScoreTable = loadHighScores();
-		highScoreTable.processScore(name, score, Calendar.getInstance().getTime());
+		highScoreTable.processScore(name, score, level, Calendar.getInstance().getTime());
 		HighScoresManager.saveHighScores(highScoreTable);
 	}
 	
