@@ -11,6 +11,8 @@ import pacmon.model.maze.Maze;
 public class ImageManager 
 {
 
+	public static final String TITLE = "title.png";
+	
 	public static final String SCREEN_MAIN = "scr_main.png";
 	public static final String SCREEN_GAME_OPTIONS = "scr_game_options.png";
 	public static final String SCREEN_GAME_OVER = "scr_game_over.png";
@@ -23,6 +25,8 @@ public class ImageManager
 
 	public static void loadAll() throws IOException
 	{
+		titleImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+TITLE));
+		
 		screenMainImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+SCREEN_MAIN));
 		screenGameOptionsImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+SCREEN_GAME_OPTIONS));
 		screenGameOverImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+SCREEN_GAME_OVER));
@@ -36,6 +40,8 @@ public class ImageManager
 	
 	public static void unloadAll()
 	{
+		titleImage = null;
+		
 		screenMainImage = null;
 		screenGameOptionsImage = null;
 		screenGameOverImage = null;
@@ -45,6 +51,11 @@ public class ImageManager
 		buttonExitImage = null;
 		buttonContinueImage = null;
 		buttonQuitImage = null;
+	}
+	
+	public static BufferedImage getTitleImage()
+	{
+		return titleImage;
 	}
 	
 	public static BufferedImage getScreenMainImage()
@@ -87,6 +98,8 @@ public class ImageManager
 		return buttonQuitImage;
 	}
 		
+	private static BufferedImage titleImage;
+	
 	private static BufferedImage screenMainImage;
 	private static BufferedImage screenGameOptionsImage;
 	private static BufferedImage screenGameOverImage;

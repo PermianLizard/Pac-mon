@@ -15,7 +15,8 @@ import pacmon.model.maze.Maze;
 public class GraphicsManager 
 {
 	
-	public static final String TILESET_DEFAULT = "default.gif";
+	public static final String TILESET_1 = "t1.gif";
+	public static final String TILESET_2 = "t2.gif";
 	
 	public static void initializeGraphicsObject(Graphics2D g)
 	{
@@ -42,6 +43,6 @@ public class GraphicsManager
 		return tilesetMap.get(tileset);
 	}
 	
-	private static String[] tilesetFiles = { TILESET_DEFAULT };
+	private static String[] tilesetFiles = { TILESET_1, TILESET_2 };
 	private static Map<String,BufferedImage> tilesetMap;
 }

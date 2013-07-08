@@ -26,6 +26,7 @@ import pacmon.view.screen.GameMenuScreen;
 import pacmon.view.screen.GameOverScreen;
 import pacmon.view.screen.GameScreen;
 import pacmon.view.screen.HighScoresScreen;
+import pacmon.view.screen.MainMenuScreen;
 import pacmon.view.screen.MenuScreen;
 import pacmon.view.screen.Screen;
 import pacmon.view.screen.effect.MainMenuScreenEffect;
@@ -65,6 +66,8 @@ public class Main implements Runnable
 			System.exit(-1);
 		}
 		
+		System.out.println(String.format("%s", ImageManager.getTitleImage()));
+		
 		try 
 		{
 			SpriteManager.loadPacmonSprites();
@@ -102,7 +105,7 @@ public class Main implements Runnable
 	
 	public static void createMainMenuScreen(RootManager rootManager)
 	{
-		MenuScreen mainMenuScreen = new MenuScreen(SCREEN_MAIN_MENU, rootManager);	
+		MainMenuScreen mainMenuScreen = new MainMenuScreen(SCREEN_MAIN_MENU, rootManager);	
 		
 		mainMenuScreen.getImage().getGraphics().drawImage(ImageManager.getScreenMainImage(), 0, 0, null);
 		
@@ -114,7 +117,7 @@ public class Main implements Runnable
 		BufferedImage buttonNewGameImage = ImageManager.getButtonNewGameImage();
 		Component newGameButton = new Component(buttonNewGameImage.getWidth(), buttonNewGameImage.getHeight());
 		newGameButton.setX(WIDTH / 2 - (newGameButton.getWidth() / 2)); 
-		newGameButton.setY(150);
+		newGameButton.setY(260);
 		Graphics2D g1 = newGameButton.getImage().createGraphics();
 		GraphicsManager.initializeGraphicsObject(g1);		
 		g1.drawImage(buttonNewGameImage, 0, 0, null);
@@ -125,7 +128,7 @@ public class Main implements Runnable
 		BufferedImage buttonHighScoresImage = ImageManager.getButtonHighScoresImage();
 		Component highScoresButton = new Component(buttonNewGameImage.getWidth(), buttonNewGameImage.getHeight());
 		highScoresButton.setX(WIDTH / 2 - (newGameButton.getWidth() / 2)); 
-		highScoresButton.setY(205);
+		highScoresButton.setY(315);
 		Graphics2D g2 = highScoresButton.getImage().createGraphics();
 		GraphicsManager.initializeGraphicsObject(g2);		
 		g2.drawImage(buttonHighScoresImage, 0, 0, null);
@@ -136,7 +139,7 @@ public class Main implements Runnable
 		BufferedImage buttonExitImage = ImageManager.getButtonExitImage();
 		Component exitButton = new Component(buttonExitImage.getWidth(), buttonExitImage.getHeight());
 		exitButton.setX(WIDTH / 2 - (exitButton.getWidth() / 2));
-		exitButton.setY(260);
+		exitButton.setY(370);
 		Graphics2D g3 = exitButton.getImage().createGraphics();
 		GraphicsManager.initializeGraphicsObject(g3);
 		g3.drawImage(buttonExitImage, 0, 0, null);		
@@ -266,7 +269,7 @@ public class Main implements Runnable
 		rootManager.showScreen(SCREEN_MAIN_MENU);
 		main.setRootManager(rootManager);		
 		
-		ImageManager.unloadAll();
+		//ImageManager.unloadAll();
 		
 		new Thread(main).start();
 	}

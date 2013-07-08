@@ -124,7 +124,7 @@ public class MazeManager
 		,"############################"
 	};
 	
-	public Maze buildMaze(String mazeDesign)	
+	public Maze buildMaze(String mazeDesign, String tileset)	
 	{
 		String[] rows = mazeDesignMap.get(mazeDesign);
 		
@@ -178,7 +178,7 @@ public class MazeManager
 			}
 		}
 		
-		Maze maze = new Maze(tileMatrix, itemMatrix); 
+		Maze maze = new Maze(tileMatrix, itemMatrix, tileset); 
 		return maze;
 	}
 	

@@ -21,7 +21,6 @@ public class MazeRenderer
 	public static void cleanup() 
 	{
 		mazeImageCacheMap = null;
-		tilesetImage = null;
 	}
 	
 	public static void renderMaze(Graphics2D g, Maze maze, int xOffset, int yOffset)
@@ -42,8 +41,7 @@ public class MazeRenderer
 		if (image == null)
 		{
 			// get the tileset
-			if (tilesetImage == null)
-				tilesetImage = GraphicsManager.getTileset(GraphicsManager.TILESET_DEFAULT);	
+			BufferedImage tilesetImage = GraphicsManager.getTileset(maze.getTileset());	
 			
 			image = new BufferedImage(Maze.WIDTH*Maze.TILE_SIZE, Maze.HEIGHT*Maze.TILE_SIZE, BufferedImage.TYPE_INT_RGB);			
 			Graphics2D gl = image.createGraphics();
@@ -65,8 +63,7 @@ public class MazeRenderer
 			
 			if (modifiedTiles.size() > 0)
 			{
-				if (tilesetImage == null)
-					tilesetImage = GraphicsManager.getTileset(GraphicsManager.TILESET_DEFAULT);
+				BufferedImage tilesetImage = GraphicsManager.getTileset(maze.getTileset());
 				
 				Graphics2D gl = image.createGraphics();
 				
@@ -276,6 +273,5 @@ public class MazeRenderer
 	}
 	
 	private static Map<Maze,BufferedImage> mazeImageCacheMap;
-	private static BufferedImage tilesetImage;
 
 }

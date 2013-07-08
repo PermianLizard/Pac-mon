@@ -14,10 +14,11 @@ public class Maze
 	public static final int TILE_SIZE = 16;
 	public static final int TILE_HALF_SIZE = 8;
 	
-	public Maze(MazeTile[][] tileMatrix, MazeItem[][] itemMatrix)
+	public Maze(MazeTile[][] tileMatrix, MazeItem[][] itemMatrix, String tileset)
 	{
 		this.tileMatrix = tileMatrix;
 		this.itemMatrix = itemMatrix;
+		this.tileset = tileset;
 
 		// Set up the monster house		
 		for (int i = 9; i < 19; ++i)
@@ -186,7 +187,17 @@ public class Maze
 	{
 		modifiedTiles.clear();
 	}
-	
+
+	public String getTileset() 
+	{
+		return tileset;
+	}
+
+	public void setTileset(String tileset) 
+	{
+		this.tileset = tileset;
+	}
+
 	private MazeTile[][] tileMatrix;
 	private MazeItem[][] itemMatrix;
 	private int totalStartEnergizers;
@@ -194,4 +205,6 @@ public class Maze
 	private int energizerCount;
 	private int dotCount;
 	private Set<Position> modifiedTiles;
+	private String tileset;
+	
 }
