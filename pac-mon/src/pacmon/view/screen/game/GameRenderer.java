@@ -27,9 +27,10 @@ public class GameRenderer
 
 		g.setColor(Color.WHITE);
 		g.setFont(labelFont);
-		g.drawString("Lvl: "+Integer.toString(game.getState().getLevelNum()), Maze.TILE_SIZE, Maze.TILE_SIZE * 2);
-		g.drawString("Score: "+Integer.toString(game.getState().getTotalScore() + game.getLevel().getState().getScore()), Maze.TILE_SIZE * 17, Maze.TILE_SIZE * 2);
-		//g.drawString("Total Score: "+Integer.toString(game.getState().getTotalScore()), Maze.TILE_SIZE * 15, Maze.TILE_SIZE * 2);
+		g.drawString("Lvl: "+Integer.toString(game.getState().getLevelNum()), Maze.TILE_SIZE, Maze.TILE_SIZE * 2 + Maze.TILE_HALF_SIZE);
+		g.drawString("Score: "+Integer.toString(game.getState().getTotalScore() + game.getLevel().getState().getScore()), Maze.TILE_SIZE * 17, Maze.TILE_SIZE * 2 + Maze.TILE_HALF_SIZE);
+		
+		g.drawString("Press [ESC] for menu", Maze.TILE_SIZE * 9, Maze.TILE_SIZE); // 35
 		
 		int xOffset = 0;
 		int yOffset = Maze.TILE_SIZE * 3;
