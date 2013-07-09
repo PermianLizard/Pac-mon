@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
@@ -22,8 +23,6 @@ import pacmon.control.action.ShowGameScreenAction;
 import pacmon.model.maze.Maze;
 import pacmon.sound.SoundLoader;
 import pacmon.view.component.Component;
-import pacmon.view.screen.GameMenuScreen;
-import pacmon.view.screen.GameOverScreen;
 import pacmon.view.screen.GameScreen;
 import pacmon.view.screen.HighScoresScreen;
 import pacmon.view.screen.MainMenuScreen;
@@ -115,6 +114,8 @@ public class Main implements Runnable
 		mainMenuScreen.addAction("High Scores", new ShowGameScreenAction(SCREEN_HIGH_SCORE));
 		mainMenuScreen.addAction("Exit", new ExitAction());
 		
+		//mainMenuScreen.setKeyEventActionGroup(KeyEvent.VK_Q, "Exit");
+		
 		BufferedImage buttonNewGameImage = ImageManager.getButtonNewGameImage();
 		Component newGameButton = new Component(buttonNewGameImage.getWidth(), buttonNewGameImage.getHeight());
 		newGameButton.setX(WIDTH / 2 - (newGameButton.getWidth() / 2)); 
@@ -153,13 +154,15 @@ public class Main implements Runnable
 	
 	public static void createGameOptionsScreen(RootManager rootManager)
 	{
-		MenuScreen gameMenuScreen = new GameMenuScreen(SCREEN_GAME_MENU, rootManager);	
+		MenuScreen gameMenuScreen = new MenuScreen(SCREEN_GAME_MENU, rootManager);	
 		
 		gameMenuScreen.getImage().getGraphics().drawImage(ImageManager.getScreenGameOptionsImage(), 0, 0, null);
 		
 		gameMenuScreen.addAction("Continue", new ShowGameScreenAction(SCREEN_GAME));
 		gameMenuScreen.addAction("Quit", new ShowGameScreenAction(SCREEN_MAIN_MENU));
 		gameMenuScreen.addAction("Quit", new EndGameAction());
+		
+		gameMenuScreen.setKeyEventActionGroup(KeyEvent.VK_ESCAPE, "Continue");
 		
 		BufferedImage buttonContinueImage = ImageManager.getButtonContinueImage();
 		Component continueGameButton = new Component(buttonContinueImage.getWidth(), buttonContinueImage.getHeight());
@@ -193,10 +196,12 @@ public class Main implements Runnable
 	
 	public static void createGameOverScreen(RootManager rootManager)
 	{
-		Screen screen = new GameOverScreen(SCREEN_GAME_OVER, rootManager, SCREEN_MAIN_MENU);
+		MenuScreen screen = new MenuScreen(SCREEN_GAME_OVER, rootManager);
 		
 		screen.addAction("Quit", new EndGameAction());
 		screen.addAction("Quit", new ShowGameScreenAction(SCREEN_MAIN_MENU));
+		
+		screen.setKeyEventActionGroup(KeyEvent.VK_ESCAPE, "Quit");
 		
 		screen.getImage().getGraphics().drawImage(ImageManager.getScreenGameOverImage(), 0, 0, null);
 		
@@ -227,9 +232,6 @@ public class Main implements Runnable
 		Screen screen = new HighScoresScreen(SCREEN_HIGH_SCORE, rootManager, SCREEN_MAIN_MENU);
 		
 		//screen.getImage().getGraphics().drawImage(ImageManager.getScreenGameOverImage(), 0, 0, null);
-		
-		Font mainFont = FontManager.getFont(FontManager.DEFAULT).deriveFont((float)Maze.TILE_SIZE);	
-		Font subFont = FontManager.getFont(FontManager.DEFAULT).deriveFont((float)Maze.TILE_SIZE - 3);
 		
 		BufferedImage image = screen.getImage();
 		Graphics2D g = image.createGraphics();
@@ -290,7 +292,7 @@ public class Main implements Runnable
 	private static final String SCREEN_HIGH_SCORE = "HIGH_SCORE";
 	
 	private static final String TEXT_GAME_OVER = "Game Over!";
-	private static final String TEXT_GAME_OVER_SUB = "Press <Enter> to continue";
+	private static final String TEXT_GAME_OVER_SUB = "Press <Escape> to continue";
 	
 	public void setRunning(boolean b)
 	{

@@ -27,6 +27,7 @@ public class MenuScreen extends Screen
 		
 		components = new ArrayList<Component>();
 		componentEventActionMap = new HashMap<Component,Map<String,String>>();
+		keyEventActionMap = new HashMap<Integer, String>();
 	}
 	
 	public void addComponent(Component component)
@@ -52,6 +53,11 @@ public class MenuScreen extends Screen
 		eventActionMap.put(eventName, actionGroup);
 	}
 	
+	public void setKeyEventActionGroup(int keyCode, String actionGroup)
+	{	
+		keyEventActionMap.put(keyCode, actionGroup);
+	}
+	
 	public void render(Graphics2D g)
 	{
 		super.render(g);
@@ -66,6 +72,16 @@ public class MenuScreen extends Screen
 				g.setStroke(new BasicStroke(1.5f));
 				g.drawRoundRect(c.getX() - FOCUS_PADDING, c.getY() - FOCUS_PADDING, c.getWidth() + FOCUS_PADDING * 2 - 1, c.getHeight() + FOCUS_PADDING * 2 - 1, 10, 10);
 			}
+		}
+	}
+	
+	public void keyPressed(KeyEvent keyEvent) 
+	{
+		super.keyPressed(keyEvent);
+	
+		if (keyEventActionMap.containsKey(keyEvent.getKeyCode()))
+		{
+			executeActions(keyEventActionMap.get(keyEvent.getKeyCode()));
 		}
 	}
 	
@@ -254,4 +270,5 @@ public class MenuScreen extends Screen
 	private List<Component> components;	
 	private Component focusedComponent;
 	private Map<Component,Map<String,String>> componentEventActionMap;
+	private Map<Integer,String> keyEventActionMap;
 }

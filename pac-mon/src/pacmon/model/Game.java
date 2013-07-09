@@ -1,12 +1,8 @@
 package pacmon.model;
 
-import java.io.IOException;
-import java.util.Calendar;
 import java.util.LinkedList;
 
 import pacmon.GraphicsManager;
-import pacmon.HighScoresManager;
-import pacmon.highscore.HighScoreTable;
 import pacmon.model.level.Level;
 import pacmon.model.level.LevelMode;
 import pacmon.model.level.LevelState;
@@ -21,7 +17,7 @@ public class Game
 	private static final int LEVEL_COMPLETE_DELEY = 100;
 	private static final int PAC_MAN_DEATH_DELEY = 150;
 	
-	private static final int PAC_MAN_LIVES = 3;
+	private static final int PAC_MAN_LIVES = 0;
 	
 	public static Game getInstance()
 	{
