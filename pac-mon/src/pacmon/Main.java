@@ -29,6 +29,7 @@ import pacmon.view.screen.HighScoresScreen;
 import pacmon.view.screen.MainMenuScreen;
 import pacmon.view.screen.MenuScreen;
 import pacmon.view.screen.Screen;
+import pacmon.view.screen.effect.InGameScreenEffect;
 import pacmon.view.screen.effect.MainMenuScreenEffect;
 
 public class Main implements Runnable
@@ -181,6 +182,8 @@ public class Main implements Runnable
 		g4.dispose();		
 		gameMenuScreen.addComponent(quitGameButton);
 		gameMenuScreen.setComponentEventActionGroup(quitGameButton, Component.EVENT_TRIGGER, "Quit");
+		
+		gameMenuScreen.addEffect(new InGameScreenEffect());
 	}
 	
 	public static void createGameScreen(RootManager rootManager)
