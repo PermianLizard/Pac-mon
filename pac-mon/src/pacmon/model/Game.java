@@ -17,7 +17,7 @@ public class Game
 	private static final int LEVEL_COMPLETE_DELEY = 100;
 	private static final int PAC_MAN_DEATH_DELEY = 150;
 	
-	private static final int PAC_MAN_LIVES = 0;
+	private static final int PAC_MAN_LIVES = 3;
 	
 	public static Game getInstance()
 	{
