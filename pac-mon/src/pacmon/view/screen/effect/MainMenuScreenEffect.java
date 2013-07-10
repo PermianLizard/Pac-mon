@@ -53,8 +53,6 @@ public class MainMenuScreenEffect extends ScreenEffect {
 	
 	private void init(Screen screen)
 	{
-		randGen = new Random();
-		
 		screen.getRootManager().getWidth();
 		
 		tileRows.clear();
@@ -72,7 +70,8 @@ public class MainMenuScreenEffect extends ScreenEffect {
 	
 	private EffectTile[] generateRandomRow(Screen screen)
 	{
-		Random randGen = new Random();
+		if (randGen == null)
+			randGen = new Random();
 		
 		int cols = screen.getRootManager().getWidth() / EFFECT_TILE_SIZE; 
 		
@@ -80,7 +79,10 @@ public class MainMenuScreenEffect extends ScreenEffect {
 		
 		for (int i=0; i< cols; ++i)
 		{
-			result[i] = new EffectTile(spriteImages.get(randGen.nextInt(spriteImages.size())));
+			if (randGen.nextFloat() > 0.7f)
+				result[i] = new EffectTile(spriteImages.get(randGen.nextInt(spriteImages.size())));
+			else
+				result[i] = null;
 		}
 		
 		return result;
@@ -108,10 +110,11 @@ public class MainMenuScreenEffect extends ScreenEffect {
 			{
 				EffectTile tile = row[tileIdx];
 				
-				g2.drawImage(tile.image, 
-						(tileIdx * EFFECT_TILE_SIZE) + EFFECT_TILE_SIZE / 2, 
-						(rowIdx * EFFECT_TILE_SIZE) + EFFECT_TILE_SIZE / 2 + t, 
-						null);
+				if (tile != null)
+					g2.drawImage(tile.image, 
+							(tileIdx * EFFECT_TILE_SIZE) + EFFECT_TILE_SIZE / 2, 
+							(rowIdx * EFFECT_TILE_SIZE) + EFFECT_TILE_SIZE / 2 + t, 
+							null);
 			}
 		}
 	}

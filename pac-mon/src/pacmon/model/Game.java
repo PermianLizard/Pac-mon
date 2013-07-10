@@ -17,7 +17,7 @@ public class Game
 	private static final int LEVEL_COMPLETE_DELEY = 100;
 	private static final int PAC_MAN_DEATH_DELEY = 150;
 	
-	private static final int PAC_MAN_LIVES = 0;
+	private static final int PAC_MAN_LIVES = 2;
 	
 	public static Game getInstance()
 	{
@@ -211,7 +211,7 @@ public class Game
 					
 					state.setLevelNum(nextLevel);
 					state.addToTotalScore(currentState.getScore());
-					state.setLivesLeft(3);				
+					state.setLivesLeft(this.getState().getLivesLeft());				
 					
 					levelStartCountdown = LEVEL_START_DELEY;
 					//SoundManager.getInstance().stopAll();
