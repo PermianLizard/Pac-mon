@@ -15,7 +15,7 @@ import pacmon.HighScoresManager;
 import pacmon.control.RootManager;
 import pacmon.highscore.HighScoreTable;
 
-public class HighScoresScreen extends Screen 
+public class HighScoresScreen extends MenuScreen 
 {
 
 	private static DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
@@ -37,7 +37,7 @@ public class HighScoresScreen extends Screen
 	
 	public HighScoresScreen(String name, RootManager rootManager, String exitScreenName) 
 	{
-		super(name, rootManager, 3);
+		super(name, rootManager);
 		
 		this.exitScreenName = exitScreenName;
 	}
@@ -129,16 +129,4 @@ public class HighScoresScreen extends Screen
 			}
 		}
 	}
-	
-	@Override
-	public void keyPressed(KeyEvent keyEvent) 
-	{
-		super.keyPressed(keyEvent);
-		
-		if (keyEvent.getKeyCode() == KeyEvent.VK_ESCAPE)
-		{
-			getRootManager().showScreen(exitScreenName);
-		}
-	}
-
 }

@@ -79,45 +79,28 @@ public class MenuScreen extends Screen
 	{
 		super.keyPressed(keyEvent);
 	
+		if (keyEvent.getKeyCode() == KeyEvent.VK_UP)
+		{
+			focusPrevComponent();
+		}
+		else if (keyEvent.getKeyCode() == KeyEvent.VK_DOWN)
+		{
+			focusNextComponent();
+		}
+		else if (keyEvent.getKeyCode() == KeyEvent.VK_ENTER)
+		{
+			if (focusedComponent != null)
+			{
+				focusedComponent.trigger();
+			}
+		}
+		
 		if (keyEventActionMap.containsKey(keyEvent.getKeyCode()))
 		{
 			executeActions(keyEventActionMap.get(keyEvent.getKeyCode()));
 		}
 	}
-	
-	@Override
-	public void update(BitSet keyStateBitSet) 
-	{
-		super.update(keyStateBitSet);
-
-		if (components.size() > 0)
-		{		
-			boolean upKey = keyStateBitSet.get(KeyEvent.VK_UP);
-			boolean downKey = keyStateBitSet.get(KeyEvent.VK_DOWN);
-			boolean enterKey = keyStateBitSet.get(KeyEvent.VK_ENTER);
-			//boolean escKey = keyStateBitSet.get(KeyEvent.VK_ESCAPE);
-			
-			if (upKey && !downKey && !enterKey)
-			{
-				focusPrevComponent();
-				keyStateBitSet.set(KeyEvent.VK_UP, false);
-			}
-			else if (downKey && !upKey && !enterKey)
-			{
-				focusNextComponent();
-				keyStateBitSet.set(KeyEvent.VK_DOWN, false);				
-			}
-			else if (enterKey)
-			{
-				if (focusedComponent != null)
-				{
-					focusedComponent.trigger();
-				}
-				keyStateBitSet.set(KeyEvent.VK_ENTER, false);
-			}
-		}
-	}
-	
+		
 	public void mouseClicked(MouseEvent mouseEvent) 
 	{
 		int mx = mouseEvent.getX();
@@ -199,16 +182,11 @@ public class MenuScreen extends Screen
 	public void onShow()
 	{
 		super.onShow();
-		
-		if (this.focusedComponent == null)
-			this.focusNextComponent();
-		//setFocusedComponent(null);
 	}
 	
 	public void onHide()
 	{
 		super.onHide();
-		//setFocusedComponent(null);
 	}
 	
 	private void focusNextComponent()
@@ -224,7 +202,7 @@ public class MenuScreen extends Screen
 				int idx = components.indexOf(focusedComponent);				
 				if (idx == components.size() - 1)
 				{
-					setFocusedComponent(components.get(0));
+					setFocusedComponent(null);
 				}
 				else
 				{
@@ -247,7 +225,7 @@ public class MenuScreen extends Screen
 				int idx = components.indexOf(focusedComponent);				
 				if (idx == 0)
 				{
-					setFocusedComponent(components.get(components.size() - 1));
+					setFocusedComponent(null);
 				}
 				else
 				{
@@ -259,6 +237,9 @@ public class MenuScreen extends Screen
 	
 	private void setFocusedComponent(Component comp)
 	{
+		if (focusedComponent == comp && comp != null) // if already focused 
+			return;
+		
 		focusedComponent = comp;
 		if (comp != null)
 		{

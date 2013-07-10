@@ -66,8 +66,6 @@ public class Main implements Runnable
 			System.exit(-1);
 		}
 		
-		System.out.println(String.format("%s", ImageManager.getTitleImage()));
-		
 		try 
 		{
 			SpriteManager.loadPacmonSprites();
@@ -107,7 +105,7 @@ public class Main implements Runnable
 	{
 		MainMenuScreen mainMenuScreen = new MainMenuScreen(SCREEN_MAIN_MENU, rootManager);	
 		
-		mainMenuScreen.getImage().getGraphics().drawImage(ImageManager.getScreenMainImage(), 0, 0, null);
+		//mainMenuScreen.getImage().getGraphics().drawImage(ImageManager.getScreenMainImage(), 0, 0, null);
 		
 		mainMenuScreen.addAction("New Game", new ShowGameScreenAction(SCREEN_GAME));
 		mainMenuScreen.addAction("New Game", new ResetGameAction());
@@ -156,7 +154,7 @@ public class Main implements Runnable
 	{
 		MenuScreen gameMenuScreen = new MenuScreen(SCREEN_GAME_MENU, rootManager);	
 		
-		gameMenuScreen.getImage().getGraphics().drawImage(ImageManager.getScreenGameOptionsImage(), 0, 0, null);
+		//gameMenuScreen.getImage().getGraphics().drawImage(ImageManager.getScreenGameOptionsImage(), 0, 0, null);
 		
 		gameMenuScreen.addAction("Continue", new ShowGameScreenAction(SCREEN_GAME));
 		gameMenuScreen.addAction("Quit", new ShowGameScreenAction(SCREEN_MAIN_MENU));
@@ -198,12 +196,23 @@ public class Main implements Runnable
 	{
 		MenuScreen screen = new MenuScreen(SCREEN_GAME_OVER, rootManager);
 		
-		screen.addAction("Quit", new EndGameAction());
-		screen.addAction("Quit", new ShowGameScreenAction(SCREEN_MAIN_MENU));
+		screen.addAction("Continue", new EndGameAction());
+		screen.addAction("Continue", new ShowGameScreenAction(SCREEN_MAIN_MENU));
 		
-		screen.setKeyEventActionGroup(KeyEvent.VK_ESCAPE, "Quit");
+		screen.setKeyEventActionGroup(KeyEvent.VK_ESCAPE, "Continue");
 		
-		screen.getImage().getGraphics().drawImage(ImageManager.getScreenGameOverImage(), 0, 0, null);
+		//screen.getImage().getGraphics().drawImage(ImageManager.getScreenGameOverImage(), 0, 0, null);
+		
+		BufferedImage buttonContinueImage = ImageManager.getButtonContinueImage();
+		Component continueGameButton = new Component(buttonContinueImage.getWidth(), buttonContinueImage.getHeight());
+		continueGameButton.setX(WIDTH / 2 - (continueGameButton.getWidth() / 2));
+		continueGameButton.setY(485);
+		Graphics2D g3 = continueGameButton.getImage().createGraphics();
+		GraphicsManager.initializeGraphicsObject(g3);
+		g3.drawImage(buttonContinueImage, 0, 0, null);		
+		g3.dispose();
+		screen.addComponent(continueGameButton);
+		screen.setComponentEventActionGroup(continueGameButton, Component.EVENT_TRIGGER, "Continue");
 		
 		Font mainFont = FontManager.getFont(FontManager.DEFAULT).deriveFont((float)Maze.TILE_SIZE);	
 		Font subFont = FontManager.getFont(FontManager.DEFAULT).deriveFont((float)Maze.TILE_SIZE - 3);
@@ -229,27 +238,22 @@ public class Main implements Runnable
 	
 	public static void createHighScoresScreen(RootManager rootManager)
 	{
-		Screen screen = new HighScoresScreen(SCREEN_HIGH_SCORE, rootManager, SCREEN_MAIN_MENU);
+		MenuScreen screen = new HighScoresScreen(SCREEN_HIGH_SCORE, rootManager, SCREEN_MAIN_MENU);
 		
-		//screen.getImage().getGraphics().drawImage(ImageManager.getScreenGameOverImage(), 0, 0, null);
+		screen.addAction("Back", new ShowGameScreenAction(SCREEN_MAIN_MENU));
 		
-		BufferedImage image = screen.getImage();
-		Graphics2D g = image.createGraphics();
-		g.setColor(Color.WHITE);
+		screen.setKeyEventActionGroup(KeyEvent.VK_ESCAPE, "Back");
 		
-		/*g.setFont(mainFont);
-		Rectangle2D mainBounds = g.getFontMetrics().getStringBounds(TEXT_GAME_OVER, g);
-		g.drawString(TEXT_GAME_OVER, 
-				(int)(image.getWidth() / 2) - (int)(mainBounds.getWidth() / 2), 
-				(int)(image.getHeight() / 2) - (int)(mainBounds.getHeight() / 2));
-		
-		g.setFont(subFont);
-		Rectangle2D subBounds = g.getFontMetrics().getStringBounds(TEXT_GAME_OVER_SUB, g);
-		g.drawString(TEXT_GAME_OVER_SUB, 
-				(int)(image.getWidth() / 2) - (int)(subBounds.getWidth() / 2), 
-				(int)(image.getHeight() / 2) - (int)(subBounds.getHeight() / 2) + (int)(mainBounds.getHeight()) + 20);*/
-		
-		//g.dispose();
+		BufferedImage buttonContinueImage = ImageManager.getButtonContinueImage();
+		Component continueGameButton = new Component(buttonContinueImage.getWidth(), buttonContinueImage.getHeight());
+		continueGameButton.setX(WIDTH / 2 - (continueGameButton.getWidth() / 2));
+		continueGameButton.setY(485);
+		Graphics2D g3 = continueGameButton.getImage().createGraphics();
+		GraphicsManager.initializeGraphicsObject(g3);
+		g3.drawImage(buttonContinueImage, 0, 0, null);		
+		g3.dispose();
+		screen.addComponent(continueGameButton);
+		screen.setComponentEventActionGroup(continueGameButton, Component.EVENT_TRIGGER, "Back");		
 	}
 
 	public static void main(String[] args)
