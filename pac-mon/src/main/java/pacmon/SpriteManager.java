@@ -21,37 +21,37 @@ public class SpriteManager
 	
 	public static void loadPacmonSprites() throws IOException
 	{
-		pacmonSpriteImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"sprites"+File.separator+PACMON_SPRITE_DEFAULT));	
+		pacmonSpriteImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"sprites"+File.separator+PACMON_SPRITE_DEFAULT));	
 	}
 	
 	public static void loadBlinkySprites() throws IOException
 	{
-		blinkySpriteImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"sprites"+File.separator+BLINKY_SPRITE_DEFAULT));	
+		blinkySpriteImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"sprites"+File.separator+BLINKY_SPRITE_DEFAULT));	
 	}
 	
 	public static void loadPinkySprites() throws IOException
 	{
-		pinkySpriteImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"sprites"+File.separator+PINKY_SPRITE_DEFAULT));	
+		pinkySpriteImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"sprites"+File.separator+PINKY_SPRITE_DEFAULT));	
 	}
 	
 	public static void loadInkySprites() throws IOException
 	{
-		inkySpriteImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"sprites"+File.separator+INKY_SPRITE_DEFAULT));	
+		inkySpriteImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"sprites"+File.separator+INKY_SPRITE_DEFAULT));	
 	}
 	
 	public static void loadClydeSprites() throws IOException
 	{
-		clydeSpriteImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"sprites"+File.separator+CLYDE_SPRITE_DEFAULT));	
+		clydeSpriteImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"sprites"+File.separator+CLYDE_SPRITE_DEFAULT));	
 	}
 	
 	public static void loadBonusSprites() throws IOException
 	{
-		bonusSpriteImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"sprites"+File.separator+BONUS_SPRITE_DEFAULT));	
+		bonusSpriteImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"sprites"+File.separator+BONUS_SPRITE_DEFAULT));	
 	}
 	
 	public static void loadConsumablesSprites() throws IOException
 	{
-		consumablesSpriteImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"sprites"+File.separator+CONSUMABLES_SPRITE_DEFAULT));	
+		consumablesSpriteImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"sprites"+File.separator+CONSUMABLES_SPRITE_DEFAULT));	
 	}
 	
 	public static BufferedImage getPacMonSpriteImage()

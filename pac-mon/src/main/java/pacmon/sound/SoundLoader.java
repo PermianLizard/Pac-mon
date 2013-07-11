@@ -53,7 +53,7 @@ public class SoundLoader
 	
 	private void loadSound(String name) throws IOException, UnsupportedAudioFileException
 	{
-		AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File(String.format("sounds/%s", name)));
+		AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File(String.format("resources/sounds/%s", name)));
 		
 		int length = (int)(audioStream.getFrameLength() * audioStream.getFormat().getFrameSize());
 		

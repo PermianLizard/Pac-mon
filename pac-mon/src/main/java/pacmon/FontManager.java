@@ -34,7 +34,7 @@ public class FontManager
 	    	}
 	    }
 	    
-	    String fName = (new File(".")).getAbsolutePath().replaceAll(".", "")+"fonts"+File.separator+name;
+	    String fName = (new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"fonts"+File.separator+name;
 	    
 	    try 
 	    {

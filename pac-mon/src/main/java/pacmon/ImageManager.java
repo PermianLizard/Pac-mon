@@ -25,17 +25,17 @@ public class ImageManager
 
 	public static void loadAll() throws IOException
 	{
-		titleImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+TITLE));
+		titleImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+TITLE));
 		
-		screenMainImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+SCREEN_MAIN));
-		screenGameOptionsImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+SCREEN_GAME_OPTIONS));
-		screenGameOverImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+SCREEN_GAME_OVER));
+		screenMainImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+SCREEN_MAIN));
+		screenGameOptionsImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+SCREEN_GAME_OPTIONS));
+		screenGameOverImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+SCREEN_GAME_OVER));
 		
-		buttonNewGameImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+BUTTON_NEW_GAME));
-		buttonHighScoresImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+BUTTON_HIGH_SCORES));
-		buttonExitImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+BUTTON_EXIT));
-		buttonContinueImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+BUTTON_CONTINUE));
-		buttonQuitImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+BUTTON_QUIT));
+		buttonNewGameImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+BUTTON_NEW_GAME));
+		buttonHighScoresImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+BUTTON_HIGH_SCORES));
+		buttonExitImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+BUTTON_EXIT));
+		buttonContinueImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+BUTTON_CONTINUE));
+		buttonQuitImage = ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"interface"+File.separator+BUTTON_QUIT));
 	}
 	
 	public static void unloadAll()

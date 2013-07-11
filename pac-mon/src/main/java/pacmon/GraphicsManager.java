@@ -31,7 +31,7 @@ public class GraphicsManager
 		
 		for (String tf : tilesetFiles)
 		{
-			tilesetMap.put(tf, ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"tilesets"+File.separator+tf)));
+			tilesetMap.put(tf, ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"tilesets"+File.separator+tf)));
 		}	
 	}
 	

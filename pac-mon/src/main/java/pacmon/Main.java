@@ -27,7 +27,6 @@ import pacmon.view.screen.GameScreen;
 import pacmon.view.screen.HighScoresScreen;
 import pacmon.view.screen.MainMenuScreen;
 import pacmon.view.screen.MenuScreen;
-import pacmon.view.screen.Screen;
 import pacmon.view.screen.effect.InGameScreenEffect;
 import pacmon.view.screen.effect.MainMenuScreenEffect;
 
