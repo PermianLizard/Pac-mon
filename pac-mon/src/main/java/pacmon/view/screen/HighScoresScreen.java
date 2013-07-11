@@ -4,7 +4,6 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
-import java.awt.event.KeyEvent;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -31,15 +30,11 @@ public class HighScoresScreen extends MenuScreen
 	
 	private static final String NO_ENTRIES_TEXT = "-No Entries-";
 	
-	private String exitScreenName;
-	
 	private List<HighScoreTable.HighScoreEntry> entryList;
 	
 	public HighScoresScreen(String name, RootManager rootManager, String exitScreenName) 
 	{
 		super(name, rootManager);
-		
-		this.exitScreenName = exitScreenName;
 	}
 
 	@Override
