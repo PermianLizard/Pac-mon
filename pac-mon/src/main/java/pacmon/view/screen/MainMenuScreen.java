@@ -3,7 +3,7 @@ package pacmon.view.screen;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 
-import pacmon.ImageManager;
+import pacmon.InterfaceImageManager;
 import pacmon.control.RootManager;
 
 public class MainMenuScreen extends MenuScreen 
@@ -19,7 +19,7 @@ public class MainMenuScreen extends MenuScreen
 	{
 		super.render(g);
 		
-		BufferedImage titleImage = ImageManager.getTitleImage();
+		BufferedImage titleImage = InterfaceImageManager.getImage(InterfaceImageManager.TITLE);
 
 		g.drawImage(titleImage, getRootManager().getWidth() / 2 - (titleImage.getWidth() / 2), 10, null);
 	}

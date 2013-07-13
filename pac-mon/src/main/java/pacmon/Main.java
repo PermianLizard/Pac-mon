@@ -4,11 +4,13 @@ import java.awt.Canvas;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import javax.sound.sampled.UnsupportedAudioFileException;
@@ -42,7 +44,29 @@ public class Main implements Runnable
 	
 	public static void initResources()
 	{
-		FontManager.loadFonts();
+		try 
+		{
+			FontManager.loadFonts();
+		} 
+		catch (FileNotFoundException e) 
+		{
+			System.out.println("Unable to load fonts");
+			e.printStackTrace();
+			System.exit(-1);
+		} 
+		catch (FontFormatException e) 
+		{
+			System.out.println("Unable to load fonts");
+			e.printStackTrace();
+			System.exit(-1);
+		} 
+		catch (IOException e) 
+		{
+			System.out.println("Unable to load fonts");
+			e.printStackTrace();
+			System.exit(-1);
+		}
+		
 		try 
 		{
 			GraphicsManager.loadTilesets();
@@ -56,7 +80,9 @@ public class Main implements Runnable
 		
 		try 
 		{
-			ImageManager.loadAll();
+			InterfaceImageManager.loadImages();
+			
+			//ImageManager.loadAll();
 		} 
 		catch (IOException e) 
 		{			
@@ -67,13 +93,15 @@ public class Main implements Runnable
 		
 		try 
 		{
-			SpriteManager.loadPacmonSprites();
+			SpriteManager.loadImages();
+			
+			/*SpriteManager.loadPacmonSprites();
 			SpriteManager.loadBlinkySprites();
 			SpriteManager.loadPinkySprites();
 			SpriteManager.loadInkySprites();
 			SpriteManager.loadClydeSprites();
 			SpriteManager.loadBonusSprites();
-			SpriteManager.loadConsumablesSprites();
+			SpriteManager.loadConsumablesSprites();*/
 		} 
 		catch (IOException e) 
 		{			
@@ -113,7 +141,7 @@ public class Main implements Runnable
 		
 		//mainMenuScreen.setKeyEventActionGroup(KeyEvent.VK_Q, "Exit");
 		
-		BufferedImage buttonNewGameImage = ImageManager.getButtonNewGameImage();
+		BufferedImage buttonNewGameImage = InterfaceImageManager.getImage(InterfaceImageManager.BUTTON_NEW_GAME);
 		Component newGameButton = new Component(buttonNewGameImage.getWidth(), buttonNewGameImage.getHeight());
 		newGameButton.setX(WIDTH / 2 - (newGameButton.getWidth() / 2)); 
 		newGameButton.setY(260);
@@ -124,7 +152,7 @@ public class Main implements Runnable
 		mainMenuScreen.addComponent(newGameButton);
 		mainMenuScreen.setComponentEventActionGroup(newGameButton, Component.EVENT_TRIGGER, "New Game");
 		
-		BufferedImage buttonHighScoresImage = ImageManager.getButtonHighScoresImage();
+		BufferedImage buttonHighScoresImage = InterfaceImageManager.getImage(InterfaceImageManager.BUTTON_HIGH_SCORES);
 		Component highScoresButton = new Component(buttonNewGameImage.getWidth(), buttonNewGameImage.getHeight());
 		highScoresButton.setX(WIDTH / 2 - (newGameButton.getWidth() / 2)); 
 		highScoresButton.setY(315);
@@ -135,7 +163,7 @@ public class Main implements Runnable
 		mainMenuScreen.addComponent(highScoresButton);
 		mainMenuScreen.setComponentEventActionGroup(highScoresButton, Component.EVENT_TRIGGER, "High Scores");
 		
-		BufferedImage buttonExitImage = ImageManager.getButtonExitImage();
+		BufferedImage buttonExitImage = InterfaceImageManager.getImage(InterfaceImageManager.BUTTON_EXIT);
 		Component exitButton = new Component(buttonExitImage.getWidth(), buttonExitImage.getHeight());
 		exitButton.setX(WIDTH / 2 - (exitButton.getWidth() / 2));
 		exitButton.setY(370);
@@ -161,7 +189,7 @@ public class Main implements Runnable
 		
 		gameMenuScreen.setKeyEventActionGroup(KeyEvent.VK_ESCAPE, "Continue");
 		
-		BufferedImage buttonContinueImage = ImageManager.getButtonContinueImage();
+		BufferedImage buttonContinueImage = InterfaceImageManager.getImage(InterfaceImageManager.BUTTON_CONTINUE);
 		Component continueGameButton = new Component(buttonContinueImage.getWidth(), buttonContinueImage.getHeight());
 		continueGameButton.setX(WIDTH / 2 - (continueGameButton.getWidth() / 2));
 		continueGameButton.setY(150);
@@ -172,7 +200,7 @@ public class Main implements Runnable
 		gameMenuScreen.addComponent(continueGameButton);
 		gameMenuScreen.setComponentEventActionGroup(continueGameButton, Component.EVENT_TRIGGER, "Continue");
 		
-		BufferedImage buttonQuitImage = ImageManager.getButtonQuitImage();
+		BufferedImage buttonQuitImage = InterfaceImageManager.getImage(InterfaceImageManager.BUTTON_QUIT);
 		Component quitGameButton = new Component(buttonQuitImage.getWidth(), buttonQuitImage.getHeight());
 		quitGameButton.setX(WIDTH / 2 - (quitGameButton.getWidth() / 2));
 		quitGameButton.setY(205);
@@ -202,7 +230,7 @@ public class Main implements Runnable
 		
 		//screen.getImage().getGraphics().drawImage(ImageManager.getScreenGameOverImage(), 0, 0, null);
 		
-		BufferedImage buttonContinueImage = ImageManager.getButtonContinueImage();
+		BufferedImage buttonContinueImage = InterfaceImageManager.getImage(InterfaceImageManager.BUTTON_CONTINUE);
 		Component continueGameButton = new Component(buttonContinueImage.getWidth(), buttonContinueImage.getHeight());
 		continueGameButton.setX(WIDTH / 2 - (continueGameButton.getWidth() / 2));
 		continueGameButton.setY(485);
@@ -243,7 +271,7 @@ public class Main implements Runnable
 		
 		screen.setKeyEventActionGroup(KeyEvent.VK_ESCAPE, "Back");
 		
-		BufferedImage buttonContinueImage = ImageManager.getButtonContinueImage();
+		BufferedImage buttonContinueImage = InterfaceImageManager.getImage(InterfaceImageManager.BUTTON_CONTINUE);
 		Component continueGameButton = new Component(buttonContinueImage.getWidth(), buttonContinueImage.getHeight());
 		continueGameButton.setX(WIDTH / 2 - (continueGameButton.getWidth() / 2));
 		continueGameButton.setY(485);

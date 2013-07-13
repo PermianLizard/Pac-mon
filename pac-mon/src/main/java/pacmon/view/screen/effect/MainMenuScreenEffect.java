@@ -8,6 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import pacmon.GraphicsManager;
 import pacmon.SpriteManager;
 import pacmon.view.screen.Screen;
 
@@ -31,7 +32,7 @@ public class MainMenuScreenEffect extends ScreenEffect {
 		//init();
 		
 		//SpriteManager.getBonusSpriteImage().getSubimage(x, y, w, h);
-		BufferedImage bonusSpriteImage = SpriteManager.getBonusSpriteImage();
+		BufferedImage bonusSpriteImage = SpriteManager.getImage(SpriteManager.BONUS_SPRITE_DEFAULT);
 		
 		int imagesSize = bonusSpriteImage.getHeight();		
 		int imagesCount = bonusSpriteImage.getWidth() / imagesSize;
@@ -98,6 +99,7 @@ public class MainMenuScreenEffect extends ScreenEffect {
 		BufferedImage screenImage = screen.getImage();
 		 
 		Graphics2D g2 = (Graphics2D)screenImage.getGraphics();
+		GraphicsManager.initializeGraphicsObject(g2);
 		
 		// clear screen
 		g2.setColor(Color.BLACK);

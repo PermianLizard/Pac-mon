@@ -69,7 +69,7 @@ public class GameRenderer
 		}
 		
 		// render lives
-		BufferedImage spriteImage = SpriteManager.getPacMonSpriteImage();
+		BufferedImage spriteImage = SpriteManager.getImage(SpriteManager.PACMON_SPRITE_DEFAULT);
 		int lx = Maze.TILE_SIZE;
 		int ly = Maze.TILE_SIZE * 35;
 		int row = 3;
@@ -89,7 +89,7 @@ public class GameRenderer
 			
 			for (int i=0; i < game.getLevel().getState().getBonusAvailable(); ++i)
 			{
-				BufferedImage bonusSpriteImage = SpriteManager.getBonusSpriteImage();
+				BufferedImage bonusSpriteImage = SpriteManager.getImage(SpriteManager.BONUS_SPRITE_DEFAULT);
 
 				int frame = 0;
 				switch(game.getLevel().getState().getBonus())

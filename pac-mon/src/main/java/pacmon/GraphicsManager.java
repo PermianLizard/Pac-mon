@@ -15,6 +15,15 @@ import pacmon.model.maze.Maze;
 public class GraphicsManager 
 {
 	
+	public static final String TILESET_IMAGE_PATH = Globals.RESOURCE_PATH+File.separator
+			+ "images"+File.separator
+			+ Maze.TILE_SIZE
+			+ "x"
+			+ Maze.TILE_SIZE
+			+ File.separator
+			+ "tilesets"
+			+ File.separator;
+	
 	public static final String TILESET_1 = "t1.gif";
 	public static final String TILESET_2 = "t2.gif";
 	
@@ -29,9 +38,9 @@ public class GraphicsManager
 		if (tilesetMap == null)
 			tilesetMap = new HashMap<String, BufferedImage>();
 		
-		for (String tf : tilesetFiles)
+		for (String tilesetFile : tilesetFiles)
 		{
-			tilesetMap.put(tf, ImageIO.read(new File((new File(".")).getAbsolutePath().replaceAll(".", "")+"resources"+File.separator+"images"+File.separator+Maze.TILE_SIZE+"x"+Maze.TILE_SIZE+File.separator+"tilesets"+File.separator+tf)));
+			tilesetMap.put(tilesetFile, ImageIO.read(new File(TILESET_IMAGE_PATH + tilesetFile)));
 		}	
 	}
 	

@@ -20,7 +20,7 @@ public class EntityRenderer
 {
 	public static void renderPacMon(Graphics2D g, PacMon pacMon, int xOffset, int yOffset, boolean isDead, boolean isPaused)
 	{
-		BufferedImage spriteImage = SpriteManager.getPacMonSpriteImage();
+		BufferedImage spriteImage = SpriteManager.getImage(SpriteManager.PACMON_SPRITE_DEFAULT);
 		
 		if (!isDead)
 			timePacMonDead = -1;
@@ -99,22 +99,22 @@ public class EntityRenderer
 	
 	public static void renderBlinky(Graphics2D g, Blinky blinky, int xOffset, int yOffset, boolean isFlashOn)
 	{
-		renderMonster(g, blinky, xOffset, yOffset, SpriteManager.getBlinkySpriteImage(), isFlashOn);
+		renderMonster(g, blinky, xOffset, yOffset, SpriteManager.getImage(SpriteManager.BLINKY_SPRITE_DEFAULT), isFlashOn);
 	}
 	
 	public static void renderPinky(Graphics2D g, Pinky pinky, int xOffset, int yOffset, boolean isFlashOn)
 	{
-		renderMonster(g, pinky, xOffset, yOffset, SpriteManager.getPinkySpriteImage(), isFlashOn);
+		renderMonster(g, pinky, xOffset, yOffset, SpriteManager.getImage(SpriteManager.PINKY_SPRITE_DEFAULT), isFlashOn);
 	}
 	
 	public static void renderInky(Graphics2D g, Inky inky, int xOffset, int yOffset, boolean isFlashOn)
 	{
-		renderMonster(g, inky, xOffset, yOffset, SpriteManager.getInkySpriteImage(), isFlashOn);
+		renderMonster(g, inky, xOffset, yOffset, SpriteManager.getImage(SpriteManager.INKY_SPRITE_DEFAULT), isFlashOn);
 	}
 	
 	public static void renderClyde(Graphics2D g, Clyde clyde, int xOffset, int yOffset, boolean isFlashOn)
 	{
-		renderMonster(g, clyde, xOffset, yOffset, SpriteManager.getClydeSpriteImage(), isFlashOn);	
+		renderMonster(g, clyde, xOffset, yOffset, SpriteManager.getImage(SpriteManager.CLYDE_SPRITE_DEFAULT), isFlashOn);	
 	}
 	
 	private static void renderMonster(Graphics2D g, Monster monster, int xOffset, int yOffset, BufferedImage spriteImage, boolean isFlashOn)

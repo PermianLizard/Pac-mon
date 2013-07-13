@@ -12,6 +12,8 @@ import pacmon.highscore.HighScoreTable;
 
 public class HighScoresManager {
 
+	public static final String HIGHSCORES_FILENAME = "scores.dat";
+	
 	public static void registerScore(String name, int score, int level) throws IOException, ClassNotFoundException
 	{
 		HighScoreTable highScoreTable = loadHighScores();
@@ -23,7 +25,7 @@ public class HighScoresManager {
 	{
 		try
 		{
-			FileInputStream fileIn = new FileInputStream("highscores.ser");
+			FileInputStream fileIn = new FileInputStream(HIGHSCORES_FILENAME);
 			ObjectInputStream in = new ObjectInputStream(fileIn);
 			HighScoreTable highScoreTable = (HighScoreTable)in.readObject();
 			in.close();
@@ -42,7 +44,7 @@ public class HighScoresManager {
 	public static void saveHighScores(HighScoreTable highScoreTable) throws IOException
 	{
 		try {
-			FileOutputStream fileOut = new FileOutputStream("highscores.ser");
+			FileOutputStream fileOut = new FileOutputStream(HIGHSCORES_FILENAME);
 			
 			ObjectOutputStream out = new ObjectOutputStream(fileOut);
 			

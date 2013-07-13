@@ -205,7 +205,7 @@ public class MazeRenderer
 		MazeItem item = maze.getMazeItem(x, y);
 		if (item != null)
 		{
-			BufferedImage consumablesSpriteImage = SpriteManager.getConsumablesSpriteImage();
+			BufferedImage consumablesSpriteImage = SpriteManager.getImage(SpriteManager.CONSUMABLES_SPRITE_DEFAULT);
 			
 			switch (item)
 			{
@@ -229,7 +229,7 @@ public class MazeRenderer
 				break;						
 			}	
 			
-			BufferedImage bonusSpriteImage = SpriteManager.getBonusSpriteImage();
+			BufferedImage bonusSpriteImage = SpriteManager.getImage(SpriteManager.BONUS_SPRITE_DEFAULT);
 			if (item.isBonus())
 			{
 				int frame = 0;
