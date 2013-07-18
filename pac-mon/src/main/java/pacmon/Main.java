@@ -136,7 +136,7 @@ public class Main implements Runnable
 		BufferedImage buttonNewGameImage = InterfaceImageManager.getImage(InterfaceImageManager.BUTTON_NEW_GAME);
 		Component newGameButton = new Component(buttonNewGameImage.getWidth(), buttonNewGameImage.getHeight());
 		newGameButton.setX(WIDTH / 2 - (newGameButton.getWidth() / 2)); 
-		newGameButton.setY(260);
+		newGameButton.setY(280);
 		Graphics2D g1 = newGameButton.getImage().createGraphics();
 		GraphicsManager.initializeGraphicsObject(g1);		
 		g1.drawImage(buttonNewGameImage, 0, 0, null);
@@ -147,7 +147,7 @@ public class Main implements Runnable
 		BufferedImage buttonHighScoresImage = InterfaceImageManager.getImage(InterfaceImageManager.BUTTON_HIGH_SCORES);
 		Component highScoresButton = new Component(buttonNewGameImage.getWidth(), buttonNewGameImage.getHeight());
 		highScoresButton.setX(WIDTH / 2 - (newGameButton.getWidth() / 2)); 
-		highScoresButton.setY(315);
+		highScoresButton.setY(335);
 		Graphics2D g2 = highScoresButton.getImage().createGraphics();
 		GraphicsManager.initializeGraphicsObject(g2);		
 		g2.drawImage(buttonHighScoresImage, 0, 0, null);
@@ -158,7 +158,7 @@ public class Main implements Runnable
 		BufferedImage buttonExitImage = InterfaceImageManager.getImage(InterfaceImageManager.BUTTON_EXIT);
 		Component exitButton = new Component(buttonExitImage.getWidth(), buttonExitImage.getHeight());
 		exitButton.setX(WIDTH / 2 - (exitButton.getWidth() / 2));
-		exitButton.setY(370);
+		exitButton.setY(390);
 		Graphics2D g3 = exitButton.getImage().createGraphics();
 		GraphicsManager.initializeGraphicsObject(g3);
 		g3.drawImage(buttonExitImage, 0, 0, null);		

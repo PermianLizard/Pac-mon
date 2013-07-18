@@ -12,7 +12,6 @@ import java.util.Map;
 
 import pacmon.control.RootManager;
 import pacmon.control.event.EventGenerator;
-import pacmon.sound.SoundLoader;
 import pacmon.view.component.Component;
 
 public class MenuScreen extends Screen 
