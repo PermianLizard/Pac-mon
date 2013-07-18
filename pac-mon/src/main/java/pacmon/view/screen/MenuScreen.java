@@ -22,7 +22,7 @@ public class MenuScreen extends Screen
 	
 	public MenuScreen(String name, RootManager rootManager)
 	{
-		super(name, rootManager, 3);
+		super(name, rootManager, 2);
 		
 		components = new ArrayList<Component>();
 		componentEventActionMap = new HashMap<Component,Map<String,String>>();
@@ -240,11 +240,6 @@ public class MenuScreen extends Screen
 			return;
 		
 		focusedComponent = comp;
-		if (comp != null)
-		{
-			if (!getSoundManager().isPlaying(SoundLoader.SELECT))
-				getSoundManager().play(SoundLoader.SELECT, false);
-		}
 	}
 	
 	private List<Component> components;	

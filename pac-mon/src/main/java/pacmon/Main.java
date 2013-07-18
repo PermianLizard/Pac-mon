@@ -94,14 +94,6 @@ public class Main implements Runnable
 		try 
 		{
 			SpriteManager.loadImages();
-			
-			/*SpriteManager.loadPacmonSprites();
-			SpriteManager.loadBlinkySprites();
-			SpriteManager.loadPinkySprites();
-			SpriteManager.loadInkySprites();
-			SpriteManager.loadClydeSprites();
-			SpriteManager.loadBonusSprites();
-			SpriteManager.loadConsumablesSprites();*/
 		} 
 		catch (IOException e) 
 		{			

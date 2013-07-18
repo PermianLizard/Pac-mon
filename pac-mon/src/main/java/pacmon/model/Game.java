@@ -163,8 +163,6 @@ public class Game
 	{		
 		if (!started)
 		{
-			//SoundManager.getInstance().stopAll();
-			//SoundManager.getInstance().play(SoundManager.BEGINNING, false);
 			this.addSoundEvent(GameSoundEvent.TYPE_STOP_ALL);
 			this.addSoundEvent(GameSoundEvent.TYPE_PLAY, SoundLoader.BEGINNING);
 			
@@ -214,8 +212,7 @@ public class Game
 					state.setLivesLeft(this.getState().getLivesLeft());				
 					
 					levelStartCountdown = LEVEL_START_DELEY;
-					//SoundManager.getInstance().stopAll();
-					//SoundManager.getInstance().play(SoundManager.BEGINNING, false);
+					
 					this.addSoundEvent(GameSoundEvent.TYPE_STOP_ALL);
 					this.addSoundEvent(GameSoundEvent.TYPE_PLAY, SoundLoader.BEGINNING);
 					
@@ -237,10 +234,8 @@ public class Game
 					}
 					else
 					{
-						//level = new Level(this);
 						levelStartCountdown = LEVEL_START_DELEY;
-						//SoundManager.getInstance().stopAll();
-						//SoundManager.getInstance().play(SoundManager.BEGINNING, false);
+						
 						this.addSoundEvent(GameSoundEvent.TYPE_STOP_ALL);
 						this.addSoundEvent(GameSoundEvent.TYPE_PLAY, SoundLoader.BEGINNING);
 						
@@ -256,7 +251,6 @@ public class Game
 				if (level.isComplete())
 				{
 					levelCompleteCountdown = LEVEL_COMPLETE_DELEY;
-					//SoundManager.getInstance().stopAll();
 					this.addSoundEvent(GameSoundEvent.TYPE_STOP_ALL);
 					
 					System.out.println("Level "+state.getLevelNum() + " complete");
@@ -266,9 +260,6 @@ public class Game
 				{
 					pacMonDeathCountdown = PAC_MAN_DEATH_DELEY;
 
-					//SoundManager.getInstance().stopAll();
-					//SoundManager.getInstance().play(SoundManager.DEATH, false);					
-					//this.addSoundEvent(GameSoundEvent.TYPE_STOP_ALL);
 					this.addSoundEvent(GameSoundEvent.TYPE_STOP, SoundLoader.INTERMISSION);
 					this.addSoundEvent(GameSoundEvent.TYPE_PLAY, SoundLoader.DEATH);
 				}
