@@ -54,6 +54,12 @@ public class MazeRenderer
 				}
 			}		
 			
+			// monster gate
+			BufferedImage gateImage = GraphicsManager.getTileset(GraphicsManager.GATE);
+			int gX = 13 * Maze.TILE_SIZE;
+			int gY = 12 * Maze.TILE_SIZE;
+			gl.drawImage(gateImage, gX, gY, null);
+			
 			gl.dispose();			
 			cacheMazeImage(maze, image);		
 		}
@@ -194,8 +200,8 @@ public class MazeRenderer
 		}*/
 		else if (maze.getMazeTile(x, y).equals(MazeTile.MONSTER_GATE))
 		{
-			gl.setColor(Color.PINK);
-			gl.fillRect(refX, refY, Maze.TILE_SIZE, Maze.TILE_SIZE); 
+			//gl.setColor(Color.PINK);
+			//gl.fillRect(refX, refY, Maze.TILE_SIZE, Maze.TILE_SIZE); 
 		}
 		
 		// item

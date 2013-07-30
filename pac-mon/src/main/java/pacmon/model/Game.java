@@ -285,7 +285,7 @@ public class Game
 	
 	private LevelState[] levelStates = {
 			// 1
-			new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, GraphicsManager.TILESET_2)
+			new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, GraphicsManager.TILESET_3)
 					, LevelMode.SCATTER
 					, 0.8f
 					, 0.9f
