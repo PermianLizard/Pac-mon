@@ -1,6 +1,6 @@
 package pacmon.model.level;
 
-import pacmon.GraphicsManager;
+import pacmon.TilesetManager;
 import pacmon.model.maze.MazeItem;
 import pacmon.model.maze.MazeManager;
 
@@ -8,7 +8,7 @@ public class LevelConfig {
 
 	public static LevelState[] LEVEL_STATES = {
 		// 1
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, GraphicsManager.TILESET_3)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, TilesetManager.TILESET_1)
 				, LevelMode.SCATTER
 				, 0.8f
 				, 0.9f
@@ -31,7 +31,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 2
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, TilesetManager.TILESET_2)
 				, LevelMode.SCATTER
 				, 0.9f
 				, 0.95f
@@ -54,7 +54,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 3
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, TilesetManager.TILESET_3)
 				, LevelMode.SCATTER
 				, 0.9f
 				, 0.95f
@@ -77,7 +77,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 4
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, TilesetManager.TILESET_4)
 				, LevelMode.SCATTER
 				, 0.9f
 				, 0.95f
@@ -100,7 +100,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 5
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_3, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_3, TilesetManager.TILESET_1)
 				, LevelMode.SCATTER
 				, 1f
 				, 1f
@@ -123,7 +123,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 6
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, TilesetManager.TILESET_2)
 				, LevelMode.SCATTER
 				, 1f
 				, 1f
@@ -146,7 +146,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 7
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, TilesetManager.TILESET_3)
 				, LevelMode.SCATTER
 				, 1f
 				, 1f
@@ -169,7 +169,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 8
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_3, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_3, TilesetManager.TILESET_4)
 				, LevelMode.SCATTER
 				, 1f
 				, 1f
@@ -192,7 +192,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 9
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, TilesetManager.TILESET_1)
 				, LevelMode.SCATTER
 				, 1f
 				, 1f
@@ -215,7 +215,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 10
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, TilesetManager.TILESET_2)
 				, LevelMode.SCATTER
 				, 1f
 				, 1f
@@ -238,7 +238,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 11
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, TilesetManager.TILESET_3)
 				, LevelMode.SCATTER
 				, 1f
 				, 1f
@@ -261,7 +261,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 12
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_3, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_3, TilesetManager.TILESET_4)
 				, LevelMode.SCATTER
 				, 1f
 				, 1f
@@ -284,7 +284,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 13
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, TilesetManager.TILESET_1)
 				, LevelMode.SCATTER
 				, 1f
 				, 1f
@@ -307,7 +307,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 14
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, TilesetManager.TILESET_2)
 				, LevelMode.SCATTER
 				, 1f
 				, 1f
@@ -330,7 +330,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 15
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_3, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_3, TilesetManager.TILESET_3)
 				, LevelMode.SCATTER
 				, 1f
 				, 1f
@@ -353,7 +353,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 16
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, TilesetManager.TILESET_4)
 				, LevelMode.SCATTER
 				, 1f
 				, 1f
@@ -376,7 +376,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 17
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, TilesetManager.TILESET_1)
 				, LevelMode.SCATTER
 				, 1f
 				, 0f
@@ -399,7 +399,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 18
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, TilesetManager.TILESET_2)
 				, LevelMode.SCATTER
 				, 1f
 				, 1f
@@ -422,7 +422,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 19
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, TilesetManager.TILESET_3)
 				, LevelMode.SCATTER
 				, 1f
 				, 0f
@@ -445,7 +445,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 20
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_1, TilesetManager.TILESET_4)
 				, LevelMode.SCATTER
 				, 1f
 				, 0f
@@ -468,7 +468,7 @@ public class LevelConfig {
 				, 2)
 		,
 		// 21+
-		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, GraphicsManager.TILESET_1)
+		new LevelState(MazeManager.getInstance().buildMaze(MazeManager.MAZE_2, TilesetManager.TILESET_1)
 				, LevelMode.SCATTER
 				, 0.9f
 				, 0f

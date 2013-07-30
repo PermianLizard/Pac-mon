@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.awt.image.RescaleOp;
 
-import pacmon.GraphicsManager;
+import pacmon.TilesetManager;
 import pacmon.model.Game;
 import pacmon.view.screen.Screen;
 import pacmon.view.screen.game.GameRenderer;
@@ -20,7 +20,7 @@ public class InGameScreenEffect extends ScreenEffect
 		
 		Graphics2D g = (Graphics2D)screenImage.getGraphics();
 		
-		GraphicsManager.initializeGraphicsObject(g);
+		TilesetManager.initializeGraphicsObject(g);
 		
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, screenImage.getWidth(), screenImage.getHeight());

@@ -12,7 +12,7 @@ import javax.imageio.ImageIO;
 
 import pacmon.model.maze.Maze;
 
-public class GraphicsManager 
+public class TilesetManager 
 {
 	
 	public static final String TILESET_IMAGE_PATH = Globals.RESOURCE_PATH+File.separator
@@ -27,7 +27,7 @@ public class GraphicsManager
 	public static final String TILESET_1 = "t1.gif";
 	public static final String TILESET_2 = "t2.gif";
 	public static final String TILESET_3 = "t3.png";
-	public static final String GATE = "gate.png";
+	public static final String TILESET_4 = "t4.png";
 	
 	public static void initializeGraphicsObject(Graphics2D g)
 	{
@@ -54,6 +54,6 @@ public class GraphicsManager
 		return tilesetMap.get(tileset);
 	}
 	
-	private static String[] tilesetFiles = { TILESET_1, TILESET_2, TILESET_3, GATE };
+	private static String[] tilesetFiles = { TILESET_1, TILESET_2, TILESET_3, TILESET_4 };
 	private static Map<String,BufferedImage> tilesetMap;
 }

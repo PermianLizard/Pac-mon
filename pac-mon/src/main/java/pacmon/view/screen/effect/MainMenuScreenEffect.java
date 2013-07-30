@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import pacmon.GraphicsManager;
+import pacmon.TilesetManager;
 import pacmon.SpriteManager;
 import pacmon.view.screen.Screen;
 
@@ -99,7 +99,7 @@ public class MainMenuScreenEffect extends ScreenEffect {
 		BufferedImage screenImage = screen.getImage();
 		 
 		Graphics2D g2 = (Graphics2D)screenImage.getGraphics();
-		GraphicsManager.initializeGraphicsObject(g2);
+		TilesetManager.initializeGraphicsObject(g2);
 		
 		// clear screen
 		g2.setColor(Color.BLACK);

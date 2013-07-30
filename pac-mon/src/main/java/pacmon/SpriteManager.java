@@ -29,11 +29,12 @@ public class SpriteManager
 	public static final String CLYDE_SPRITE_DEFAULT = "clyde.png";
 	public static final String BONUS_SPRITE_DEFAULT = "bonus.png";
 	public static final String CONSUMABLES_SPRITE_DEFAULT = "consumables.png";
+	public static final String GATE_SPRITE_DEFAULT = "gate.png";
 	
 	private static final String[] spriteFiles = {PACMON_SPRITE_DEFAULT, BLINKY_SPRITE_DEFAULT, 
 		PINKY_SPRITE_DEFAULT, INKY_SPRITE_DEFAULT,
 		CLYDE_SPRITE_DEFAULT, BONUS_SPRITE_DEFAULT, 
-		CONSUMABLES_SPRITE_DEFAULT};
+		CONSUMABLES_SPRITE_DEFAULT, GATE_SPRITE_DEFAULT};
 	
 	private static final Map<String,BufferedImage> spriteImageMap;
 	

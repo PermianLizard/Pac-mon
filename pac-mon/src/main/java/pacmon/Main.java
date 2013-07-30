@@ -69,7 +69,7 @@ public class Main implements Runnable
 		
 		try 
 		{
-			GraphicsManager.loadTilesets();
+			TilesetManager.loadTilesets();
 		} 
 		catch (IOException e) 
 		{			
@@ -138,7 +138,7 @@ public class Main implements Runnable
 		newGameButton.setX(WIDTH / 2 - (newGameButton.getWidth() / 2)); 
 		newGameButton.setY(280);
 		Graphics2D g1 = newGameButton.getImage().createGraphics();
-		GraphicsManager.initializeGraphicsObject(g1);		
+		TilesetManager.initializeGraphicsObject(g1);		
 		g1.drawImage(buttonNewGameImage, 0, 0, null);
 		g1.dispose();
 		mainMenuScreen.addComponent(newGameButton);
@@ -149,7 +149,7 @@ public class Main implements Runnable
 		highScoresButton.setX(WIDTH / 2 - (newGameButton.getWidth() / 2)); 
 		highScoresButton.setY(335);
 		Graphics2D g2 = highScoresButton.getImage().createGraphics();
-		GraphicsManager.initializeGraphicsObject(g2);		
+		TilesetManager.initializeGraphicsObject(g2);		
 		g2.drawImage(buttonHighScoresImage, 0, 0, null);
 		g2.dispose();
 		mainMenuScreen.addComponent(highScoresButton);
@@ -160,7 +160,7 @@ public class Main implements Runnable
 		exitButton.setX(WIDTH / 2 - (exitButton.getWidth() / 2));
 		exitButton.setY(390);
 		Graphics2D g3 = exitButton.getImage().createGraphics();
-		GraphicsManager.initializeGraphicsObject(g3);
+		TilesetManager.initializeGraphicsObject(g3);
 		g3.drawImage(buttonExitImage, 0, 0, null);		
 		g3.dispose();		
 		mainMenuScreen.addComponent(exitButton);
@@ -186,7 +186,7 @@ public class Main implements Runnable
 		continueGameButton.setX(WIDTH / 2 - (continueGameButton.getWidth() / 2));
 		continueGameButton.setY(150);
 		Graphics2D g3 = continueGameButton.getImage().createGraphics();
-		GraphicsManager.initializeGraphicsObject(g3);
+		TilesetManager.initializeGraphicsObject(g3);
 		g3.drawImage(buttonContinueImage, 0, 0, null);		
 		g3.dispose();
 		gameMenuScreen.addComponent(continueGameButton);
@@ -197,7 +197,7 @@ public class Main implements Runnable
 		quitGameButton.setX(WIDTH / 2 - (quitGameButton.getWidth() / 2));
 		quitGameButton.setY(205);
 		Graphics2D g4 = quitGameButton.getImage().createGraphics();
-		GraphicsManager.initializeGraphicsObject(g4);
+		TilesetManager.initializeGraphicsObject(g4);
 		g4.drawImage(buttonQuitImage, 0, 0, null);	
 		g4.dispose();		
 		gameMenuScreen.addComponent(quitGameButton);
@@ -227,7 +227,7 @@ public class Main implements Runnable
 		continueGameButton.setX(WIDTH / 2 - (continueGameButton.getWidth() / 2));
 		continueGameButton.setY(485);
 		Graphics2D g3 = continueGameButton.getImage().createGraphics();
-		GraphicsManager.initializeGraphicsObject(g3);
+		TilesetManager.initializeGraphicsObject(g3);
 		g3.drawImage(buttonContinueImage, 0, 0, null);		
 		g3.dispose();
 		screen.addComponent(continueGameButton);
@@ -268,7 +268,7 @@ public class Main implements Runnable
 		continueGameButton.setX(WIDTH / 2 - (continueGameButton.getWidth() / 2));
 		continueGameButton.setY(485);
 		Graphics2D g3 = continueGameButton.getImage().createGraphics();
-		GraphicsManager.initializeGraphicsObject(g3);
+		TilesetManager.initializeGraphicsObject(g3);
 		g3.drawImage(buttonContinueImage, 0, 0, null);		
 		g3.dispose();
 		screen.addComponent(continueGameButton);
@@ -414,7 +414,7 @@ public class Main implements Runnable
 	{		
 		Graphics2D g = (Graphics2D) bufferStrategy.getDrawGraphics();
 
-		GraphicsManager.initializeGraphicsObject(g);
+		TilesetManager.initializeGraphicsObject(g);
 		
 		if (rootManager != null)
 		{	

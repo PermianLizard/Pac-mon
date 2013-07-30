@@ -8,7 +8,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import pacmon.GraphicsManager;
+import pacmon.TilesetManager;
 import pacmon.SpriteManager;
 import pacmon.model.maze.Maze;
 import pacmon.model.maze.MazeItem;
@@ -41,7 +41,7 @@ public class MazeRenderer
 		if (image == null)
 		{
 			// get the tileset
-			BufferedImage tilesetImage = GraphicsManager.getTileset(maze.getTileset());	
+			BufferedImage tilesetImage = TilesetManager.getTileset(maze.getTileset());	
 			
 			image = new BufferedImage(Maze.WIDTH*Maze.TILE_SIZE, Maze.HEIGHT*Maze.TILE_SIZE, BufferedImage.TYPE_INT_RGB);			
 			Graphics2D gl = image.createGraphics();
@@ -55,7 +55,7 @@ public class MazeRenderer
 			}		
 			
 			// monster gate
-			BufferedImage gateImage = GraphicsManager.getTileset(GraphicsManager.GATE);
+			BufferedImage gateImage = SpriteManager.getImage(SpriteManager.GATE_SPRITE_DEFAULT);
 			int gX = 13 * Maze.TILE_SIZE;
 			int gY = 12 * Maze.TILE_SIZE;
 			gl.drawImage(gateImage, gX, gY, null);
@@ -69,7 +69,7 @@ public class MazeRenderer
 			
 			if (modifiedTiles.size() > 0)
 			{
-				BufferedImage tilesetImage = GraphicsManager.getTileset(maze.getTileset());
+				BufferedImage tilesetImage = TilesetManager.getTileset(maze.getTileset());
 				
 				Graphics2D gl = image.createGraphics();
 				
