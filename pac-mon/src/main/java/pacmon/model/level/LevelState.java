@@ -64,6 +64,43 @@ public class LevelState implements Cloneable
 		totalFlashInterval = Level.MONSTER_FLASH_DURATION * frightenedMonsterFlashes * 2;
 	}
 	
+	public LevelState(LevelState other) {
+		super();
+		
+		this.maze = new Maze(other.maze);
+		this.score = other.score;
+		this.dotsConsumed = other.dotsConsumed;		
+		this.mode = other.mode;		
+		this.pacManNormalSpeed = other.pacManNormalSpeed;
+		this.pacManFrightSpeed = other.pacManFrightSpeed;
+		this.monsterNormalSpeed = other.monsterNormalSpeed;
+		this.monsterFrightSpeed = other.monsterFrightSpeed;
+		this.monsterTunnelSpeed = other.monsterTunnelSpeed;
+		
+		this.elroy1Speed = other.elroy1Speed;
+		this.elroy2Speed = other.elroy2Speed;
+		
+		this.hasFrightenedMode = other.hasFrightenedMode;
+		
+		this.frightenedDuration = other.frightenedDuration;
+		this.frightenedMonsterFlashes = other.frightenedMonsterFlashes;
+		
+		this.scatter1Duration = other.scatter1Duration;
+		this.chase1Duration = other.chase1Duration;
+		this.scatter2Duration = other.scatter2Duration;
+		this.chase2Duration = other.chase2Duration;
+		this.scatter3Duration = other.scatter3Duration;
+		this.chase3Duration = other.chase3Duration;
+		this.scatter4Duration = other.scatter4Duration;
+		
+		this.bonus = other.bonus;
+		
+		this.bonusAvailable = other.bonusAvailable;
+		
+		// internal
+		this.totalFlashInterval = other.totalFlashInterval;
+	}
+	
 	public int getScore()
 	{
 		return this.score;

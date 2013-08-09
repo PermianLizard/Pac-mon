@@ -62,7 +62,7 @@ public class Game
 		
 		paused = false;
 		level = new Level();
-		level.setState(LevelConfig.LEVEL_STATES[0]);
+		level.setState(new LevelState(LevelConfig.LEVEL_STATES[0]));
 		gameOver = false;
 		
 		levelStartCountdown = LEVEL_START_DELEY;
@@ -73,6 +73,8 @@ public class Game
 		started = false;
 		
 		soundEventQueue = new LinkedList<GameSoundEvent>();
+		
+		System.out.println("new game created");
 	}
 	
 	public GameSoundEvent pollSoundEvent() 
@@ -195,11 +197,11 @@ public class Game
 					LevelState nextState = null;
 					if (nextLevel >= LevelConfig.LEVEL_STATES.length)
 					{
-						nextState = LevelConfig.LEVEL_STATES[LevelConfig.LEVEL_STATES.length - 1];	
+						nextState = new LevelState(LevelConfig.LEVEL_STATES[LevelConfig.LEVEL_STATES.length - 1]);	
 					}
 					else
 					{
-						nextState = LevelConfig.LEVEL_STATES[nextLevel - 1];
+						nextState = new LevelState(LevelConfig.LEVEL_STATES[nextLevel - 1]);
 					}
 					
 					level = new Level();					

@@ -1,5 +1,6 @@
 package pacmon.model.maze;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -77,6 +78,25 @@ public class Maze
 		dotCount = totalStartDots;	
 		
 		modifiedTiles = new HashSet<Position>();
+	}
+	
+	public Maze(Maze other) {
+		this.tileMatrix = new MazeTile[other.tileMatrix.length][other.tileMatrix[0].length];
+		for (int i=0; i < other.tileMatrix.length; ++i) {
+			this.tileMatrix[i] = Arrays.copyOf(other.tileMatrix[i], other.tileMatrix[i].length);
+		}
+		
+		this.itemMatrix = new MazeItem[other.itemMatrix.length][other.itemMatrix[0].length];
+		for (int i=0; i < other.itemMatrix.length; ++i) {
+			this.itemMatrix[i] = Arrays.copyOf(other.itemMatrix[i], other.itemMatrix[i].length);
+		}
+		
+		this.totalStartEnergizers = other.totalStartEnergizers;
+		this.totalStartDots = other.totalStartDots;
+		this.energizerCount = other.energizerCount;
+		this.dotCount = other.dotCount;
+		this.modifiedTiles = new HashSet<Position>();
+		this.tileset = other.tileset;
 	}
 	
 	public MazeTile getMazeTile(int x, int y)
